@@ -4,7 +4,7 @@ class SearchQuery extends Component {
   render() {
     return (
       <div>
-        Search query
+        <input type="search" onChange={this.props.onChange}/>
       </div>
     );
   }

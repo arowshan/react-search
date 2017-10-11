@@ -5,11 +5,25 @@ import SearchFilters from './search-filters';
 import SearchResults from './search-results'; 
 
 class SearchMaster extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      searchQuery: '',
+      searchFilters: ['location', 'web', 'mobile'],
+      searchResults: []
+    }
+  }
+
+  updateSearch(event) {
+    console.log(event.target.value);
+  }
+
   render() {
     return (
       <div>
-        <SearchQuery />
-        <SearchFilters />
+        <SearchQuery onChange={this.updateSearch}/>
+        <SearchFilters searchFilters={this.state.searchFilters}/>
         <SearchResults />
       </div>
     );

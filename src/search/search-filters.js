@@ -7,18 +7,22 @@ class SearchFilters extends Component {
       if(typeof(filter)==='string' || typeof(filter)==='number') {
         return (
           <li key={filter}>
-            <input type="checkbox"/>{filter}
+            <input type='checkbox'/>{filter}
           </li> 
         );
       }
       else if(typeof(filter==='object')) {
         return (
-          <li><input type="checkbox"/>{Object.keys(filter)[0]}
+          <li><input type='checkbox'/>{Object.keys(filter)[0]}
             <ul>
               {this.listFilters(filter[Object.keys(filter)[0]])}
             </ul>
           </li>
         )
+      }
+      else {
+        //TODO:throw error for wrong type
+        return false;
       }
     });
   }

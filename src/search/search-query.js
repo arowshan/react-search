@@ -5,6 +5,7 @@ class SearchQuery extends Component {
     return (
       <div>
         <input type="search" onChange={this.props.onChange}/>
+        <button onClick={this.props.onSearch}>Search</button>
       </div>
     );
   }

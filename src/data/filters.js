@@ -1,19 +1,19 @@
 const FILTERS = [
-    "remote",
-    "engineering",
-    "management",
-    "entry level",
-    "senior level",
+    "Remote",
+    "Engineering",
+    "Management",
+    "Entry level",
+    "Senior level",
     {
       "Job Type" : [
-        "full-time",
-        "part-time",
-        "contract",
-        "internship"
+        "Full-time",
+        "Part-time",
+        "Contract",
+        "Internship"
       ]
     },
     {
-      "state" : [
+      "State" : [
         "DC",
         {
           "VA" : [

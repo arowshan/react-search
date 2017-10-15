@@ -6,11 +6,11 @@ import SearchResults from './search-results';
 
 class SearchMaster extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       searchQuery: '',
-      searchFilters: ['location', 'web', 'mobile'],
+      searchFilters: this.props.searchFilters,
       searchResults: []
     }
   }
@@ -24,7 +24,7 @@ class SearchMaster extends Component {
       <div>
         <SearchQuery onChange={this.updateSearch}/>
         <SearchFilters searchFilters={this.state.searchFilters}/>
-        <SearchResults />
+        <SearchResults results={this.state.searchResults}/>
       </div>
     );
   }

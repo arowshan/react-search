@@ -4,7 +4,7 @@ class SearchResults extends Component {
   render() {
     return (
       <div>
-        Search results
+        {this.props.results}
       </div>
     );
   }

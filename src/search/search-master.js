@@ -15,13 +15,15 @@ class SearchMaster extends Component {
       searchQuery: '',
       searchFilters: this.props.searchFilters,
       appliedFilters: [],
-      resultsPerPage: 0,
+      //TODO dynamically get this
+      resultsPerPage: 25,
       searchResults: []
     }
 
     this.updateQuery = this.updateQuery.bind(this);
     this.updateFilters = this.updateFilters.bind(this);
     this.updateSearch = this.updateSearch.bind(this);
+    this.updateResultsPerPage = this.updateResultsPerPage.bind(this);
     
   }
 
@@ -44,8 +46,8 @@ class SearchMaster extends Component {
 
   updateResultsPerPage(event) {
     this.setState({
-      resultsPerPage : event.target.value
-    })
+      resultsPerPage : Math.min(event.target.value, this.state.searchResults.length)
+    });
   }
 
   render() {
@@ -62,7 +64,10 @@ class SearchMaster extends Component {
           resultsPerPage={this.state.resultsPerPage}
           updateResultsPerPage={this.updateResultsPerPage}
         />
-        <SearchResults searchResults={this.state.searchResults}/>
+        <SearchResults 
+          searchResults={this.state.searchResults}
+          resultsPerPage={this.state.resultsPerPage}
+        />
       </div>
     );
   }

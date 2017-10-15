@@ -2,20 +2,35 @@ import React, { Component } from 'react';
 
 class SearchFilters extends Component {
 
-  listFilters(filters) {
+  //TODO: parent and children checkbox communication
+
+  handleChildChange(path, event) {
+    // console.log(path, ': ', event.target.value, ' : ', event.target.checked);
+    // this.refs['Job Type'].checked = true;
+    
+    // TODO: create format where each filter is addressable
+  }
+
+  listFilters(path, filters) {
     return filters.map( (filter) => {
       if(typeof(filter)==='string' || typeof(filter)==='number') {
         return (
           <li key={filter}>
-            <input type='checkbox'/>{filter}
+            <input 
+              type='checkbox' ref={path}
+              value={filter}
+              onChange={(event) => this.handleChildChange(path, event)}
+            />
+            {filter}
           </li> 
         );
       }
       else if(typeof(filter==='object')) {
         return (
-          <li><input type='checkbox'/>{Object.keys(filter)[0]}
+          <li key={Object.keys(filter)[0]}><input type='checkbox'/>
+            {Object.keys(filter)[0]}
             <ul>
-              {this.listFilters(filter[Object.keys(filter)[0]])}
+              {this.listFilters( Object.keys(filter)[0] , filter[Object.keys(filter)[0]])}
             </ul>
           </li>
         )
@@ -29,9 +44,10 @@ class SearchFilters extends Component {
 
   render() {
     return (
+      //TODO: classNames
       <div>
         <ul>
-          {this.listFilters(this.props.searchFilters)}
+          {this.listFilters( 0, this.props.searchFilters)}
         </ul>
       </div>
     );

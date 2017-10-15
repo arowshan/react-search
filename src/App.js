@@ -3,7 +3,6 @@ import './App.css';
 
 import SearchMaster from './search/search-master';
 
-import DATA from './data/data';
 import FILTERS from './data/filters';
 
 class App extends Component {
@@ -15,6 +14,7 @@ class App extends Component {
       </div>
     );
   }
+  
 }
 
 export default App;

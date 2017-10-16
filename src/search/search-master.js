@@ -16,6 +16,7 @@ class SearchMaster extends Component {
       searchFilters: this.props.searchFilters,
       appliedFilters: [],
       //TODO dynamically get this
+      resultsPage: 1,
       resultsPerPage: 25,
       searchResults: []
     }
@@ -24,6 +25,9 @@ class SearchMaster extends Component {
     this.updateFilters = this.updateFilters.bind(this);
     this.updateSearch = this.updateSearch.bind(this);
     this.updateResultsPerPage = this.updateResultsPerPage.bind(this);
+    this.nextPage = this.nextPage.bind(this);
+    this.prevPage = this.prevPage.bind(this);
+    this.setPage = this.setPage.bind(this);
     
   }
 
@@ -37,11 +41,9 @@ class SearchMaster extends Component {
 
   updateSearch() {
     //TODO: Send AJAX with query and filters set
-    console.log(this.state.searchQuery);
     this.setState({
       searchResults: DATA,
     });
-
   }
 
   updateResultsPerPage(event) {
@@ -50,11 +52,36 @@ class SearchMaster extends Component {
     });
   }
 
+  nextPage() {
+    this.setState({
+      resultsPage : Number(this.state.resultsPage)+1
+    });
+  }
+
+  prevPage() {
+    if(this.state.resultsPage!==1) {
+      this.setState({
+        resultsPage : Number(this.state.resultsPage)-1
+      });
+    }
+  }
+  
+  setPage(event) {
+    const page = event.target.value;
+    if(page >= 1){
+      this.setState({
+        resultsPage : page
+      });
+    }
+    else {
+      this.setState({
+        resultsPage : 1
+      });
+    }
+  }
+
 
   render() {
-
-
-    console.log(this.props.children)
 
     return (
       <div>
@@ -64,12 +91,17 @@ class SearchMaster extends Component {
         />
         <SearchFilters searchFilters={this.state.searchFilters}/>
         <SearchSort 
-          resultsCount={this.state.searchResults.length} 
+          resultsCount={this.state.searchResults.length}
+          resultsPage={this.state.resultsPage}
           resultsPerPage={this.state.resultsPerPage}
           updateResultsPerPage={this.updateResultsPerPage}
+          nextPage={this.nextPage}
+          prevPage={this.prevPage}
+          setPage={this.setPage}
         />
         <SearchResults
           searchResults={this.state.searchResults}
+          resultsPage={this.state.resultsPage}
           resultsPerPage={this.state.resultsPerPage}
           children={this.props.children}
         />

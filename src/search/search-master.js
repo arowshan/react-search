@@ -54,7 +54,7 @@ class SearchMaster extends Component {
   render() {
 
 
-    console.log(this.props.children.props)
+    console.log(this.props.children)
 
     return (
       <div>
@@ -71,9 +71,9 @@ class SearchMaster extends Component {
         <SearchResults
           searchResults={this.state.searchResults}
           resultsPerPage={this.state.resultsPerPage}
+          children={this.props.children}
         />
-
-        {this.props.children}
+        
       </div>
     );
   }

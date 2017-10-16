@@ -4,7 +4,7 @@ class SearchResults extends Component {
   
   listResults() {
     return this.props.searchResults.slice(0, this.props.resultsPerPage).map( (result) => {
-      return result.position;
+      return React.cloneElement(this.props.children, { result: result })
     })
   }
   

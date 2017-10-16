@@ -6,10 +6,10 @@ class SearchSort extends Component {
         //TODO: get values and intervals dynamically
         return (
         <div>
-            <span>Show {Math.min(this.props.resultsPerPage, this.props.resultsCount)} of {this.props.resultsCount}</span>
+            Show {Math.min(this.props.resultsPerPage, this.props.resultsCount)} of {this.props.resultsCount}
             &ensp;&ensp;&ensp;
             View: 
-            <select value={25} onChange={this.props.updateResultsPerPage}>
+            <select defaultValue={25} onChange={this.props.updateResultsPerPage}>
                 <option value="1">1</option>
                 <option value="5">5</option>
                 <option value="25">25</option>

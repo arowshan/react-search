@@ -46,11 +46,15 @@ class SearchMaster extends Component {
 
   updateResultsPerPage(event) {
     this.setState({
-      resultsPerPage : Math.min(event.target.value, this.state.searchResults.length)
+      resultsPerPage : event.target.value
     });
   }
 
+
   render() {
+
+
+    console.log(this.props.children.props)
 
     return (
       <div>
@@ -64,10 +68,12 @@ class SearchMaster extends Component {
           resultsPerPage={this.state.resultsPerPage}
           updateResultsPerPage={this.updateResultsPerPage}
         />
-        <SearchResults 
+        <SearchResults
           searchResults={this.state.searchResults}
           resultsPerPage={this.state.resultsPerPage}
         />
+
+        {this.props.children}
       </div>
     );
   }

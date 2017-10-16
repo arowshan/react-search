@@ -6,7 +6,15 @@ class SearchSort extends Component {
         //TODO: get values and intervals dynamically
         return (
         <div>
-            Show {Math.min(this.props.resultsPerPage, this.props.resultsCount)} of {this.props.resultsCount}
+            Show 
+            {Math.min(
+                this.props.resultsPerPage * (this.props.resultsPage-1), 
+                this.props.resultsCount)
+            } to 
+            {Math.min(
+                this.props.resultsPerPage * this.props.resultsPage,
+                this.props.resultsCount)
+            } of {this.props.resultsCount}
             &ensp;&ensp;&ensp;
 
             View: 

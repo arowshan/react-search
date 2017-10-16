@@ -13,6 +13,21 @@ const DATA = [
         "position" : "DevOps Engineer",
         "state" : "CA",
         "city" : "San Diego" 
+    },
+    {
+        "position" : "Manager",
+        "state" : "VA",
+        "city" : "Reston" 
+    },
+    {
+        "position" : "Director",
+        "state" : "MD",
+        "city" : "Bethesda" 
+    },
+    {
+        "position" : "SysOps Engineer",
+        "state" : "CA",
+        "city" : "LA" 
     }
 ];
 

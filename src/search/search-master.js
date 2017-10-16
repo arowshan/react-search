@@ -18,6 +18,7 @@ class SearchMaster extends Component {
       //TODO dynamically get this
       resultsPage: 1,
       resultsPerPage: 25,
+      startingResult: 0,
       searchResults: []
     }
 
@@ -98,6 +99,7 @@ class SearchMaster extends Component {
           nextPage={this.nextPage}
           prevPage={this.prevPage}
           setPage={this.setPage}
+          startingResult={this.state.startingResult}
         />
         <SearchResults
           searchResults={this.state.searchResults}

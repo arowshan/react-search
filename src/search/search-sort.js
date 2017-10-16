@@ -6,12 +6,10 @@ class SearchSort extends Component {
         //TODO: get values and intervals dynamically
         return (
         <div>
-            Show 
-            {Math.min(
-                this.props.resultsPerPage * (this.props.resultsPage-1), 
+            Show {Math.min(
+                this.props.resultsPerPage * (this.props.resultsPage-1) +1, 
                 this.props.resultsCount)
-            } to 
-            {Math.min(
+            } to {Math.min(
                 this.props.resultsPerPage * this.props.resultsPage,
                 this.props.resultsCount)
             } of {this.props.resultsCount}
@@ -25,12 +23,22 @@ class SearchSort extends Component {
             </select>
             &ensp;&ensp;&ensp;
 
-            <button onClick={this.props.prevPage}>prev</button>
+            <button onClick={this.props.prevPage}
+                disabled={this.props.resultsPage===1}
+            >prev</button>
             <input type="number" style={{width: '30px'}} min="1"
                 value={this.props.resultsPage}
                 onChange={this.props.setPage}
+                readOnly
             />
-            <button onClick={this.props.nextPage}>next</button>
+            <button 
+                onClick={this.props.nextPage}
+                disabled={
+                    this.props.resultsPage>=
+                    Math.ceil(this.props.resultsCount / this.props.resultsPerPage)
+                }
+            >next
+            </button>
 
         </div>
         );

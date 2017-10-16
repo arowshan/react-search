@@ -14,6 +14,7 @@ class SearchMaster extends Component {
     this.state = {
       searchQuery: '',
       searchFilters: this.props.searchFilters,
+      sortCategories: this.props.sortCategories,
       appliedFilters: [],
       //TODO dynamically get this
       resultsPage: 1,
@@ -49,7 +50,8 @@ class SearchMaster extends Component {
 
   updateResultsPerPage(event) {
     this.setState({
-      resultsPerPage : event.target.value
+      resultsPerPage : event.target.value,
+      resultsPage: 1
     });
   }
 
@@ -69,7 +71,7 @@ class SearchMaster extends Component {
   
   setPage(event) {
     const page = event.target.value;
-    if(page >= 1){
+    if(page >= 1) {
       this.setState({
         resultsPage : page
       });

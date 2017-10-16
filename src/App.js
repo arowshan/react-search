@@ -5,13 +5,18 @@ import SearchMaster from './search/search-master';
 import ResultCard from './data/result-card'
 
 import FILTERS from './data/filters';
+import SORTS from './data/sorts';
 
 class App extends Component {
 
   render() {
     return (
       <div className="App">
-        <SearchMaster children={<ResultCard />} searchFilters={FILTERS}/>
+        <SearchMaster 
+          children={<ResultCard />} 
+          searchFilters={FILTERS}
+          sortingCategories={SORTS}
+        />
       </div>
     );
   }

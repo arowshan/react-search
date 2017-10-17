@@ -8,7 +8,7 @@ class SearchResults extends Component {
       this.props.resultsPerPage*(this.props.resultsPage)
     )
     .map( (result) => {
-      return React.cloneElement(this.props.children, {
+      return React.cloneElement(this.props.resultComponent, {
         result: result,
         //TODO:should use id or something general
         key: result.position

@@ -13,9 +13,9 @@ class App extends Component {
     return (
       <div className="App">
         <SearchMaster 
-          children={<ResultCard />} 
+          resultComponent={<ResultCard />} 
           searchFilters={FILTERS}
-          sortingCategories={SORTS}
+          sortCategories={SORTS}
         />
       </div>
     );

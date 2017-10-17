@@ -1,5 +1,7 @@
-const SORTS = {
-    "position": 'Position',
-    "state.city": 'State'
+const SORTS = [
+    { Position: [ 'position' ] },
+    { State: [ 'state' ] }
+];
 
-}
+export default SORTS;
+

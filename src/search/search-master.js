@@ -102,12 +102,13 @@ class SearchMaster extends Component {
           prevPage={this.prevPage}
           setPage={this.setPage}
           startingResult={this.state.startingResult}
+          sortCategories={this.props.sortCategories}
         />
         <SearchResults
           searchResults={this.state.searchResults}
           resultsPage={this.state.resultsPage}
           resultsPerPage={this.state.resultsPerPage}
-          children={this.props.children}
+          resultComponent={this.props.resultComponent}
         />
         
       </div>

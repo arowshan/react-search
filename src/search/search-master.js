@@ -20,7 +20,8 @@ class SearchMaster extends Component {
       resultsPage: 1,
       resultsPerPage: 25,
       startingResult: 0,
-      searchResults: []
+      searchResults: [],
+      sortBy: ''
     }
 
     this.updateQuery = this.updateQuery.bind(this);
@@ -30,6 +31,7 @@ class SearchMaster extends Component {
     this.nextPage = this.nextPage.bind(this);
     this.prevPage = this.prevPage.bind(this);
     this.setPage = this.setPage.bind(this);
+    this.updateSortBy = this.updateSortBy.bind(this);
     
   }
 
@@ -83,6 +85,25 @@ class SearchMaster extends Component {
     }
   }
 
+// SORTING
+  updateSortBy(event) {
+    this.setState({
+      sortBy : this.state.sortCategories[event.target.value][0]
+    }, () => this.sortResults());  
+  }
+
+  sortResults() {
+    let sortedResults = this.state.searchResults.concat().sort(
+      (a, b) => {
+        return a[this.state.sortBy].localeCompare(b[this.state.sortBy])
+      }
+    );
+    
+    this.setState ({
+      searchResults : sortedResults
+    });
+  }
+
 
   render() {
 
@@ -103,6 +124,8 @@ class SearchMaster extends Component {
           setPage={this.setPage}
           startingResult={this.state.startingResult}
           sortCategories={this.props.sortCategories}
+          sortBy={this.props.sortyBy}
+          updateSortBy={this.updateSortBy}
         />
         <SearchResults
           searchResults={this.state.searchResults}

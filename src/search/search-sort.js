@@ -3,11 +3,10 @@ import React, { Component } from 'react';
 class SearchSort extends Component {
 
     listSortCategories() {
-        console.log(this.props);
-        return this.props.sortCategories.map( (category) => {
+        return Object.keys(this.props.sortCategories).map( (category) => {
             return (
-                <option value={Object.keys(category)[0]}>
-                    {Object.keys(category)[0]}
+                <option key={category} value={category}>
+                    {category}
                 </option>
             )
         });
@@ -36,7 +35,8 @@ class SearchSort extends Component {
             &ensp;&ensp;&ensp;
 
             Sort: 
-            <select>
+            {/* TODO: Dynamic default value */}
+            <select onChange={this.props.updateSortBy}>
                 {this.listSortCategories()}
             </select>
             &ensp;&ensp;&ensp;

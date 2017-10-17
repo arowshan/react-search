@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 PROPS:
   * searchQuery:    String that is passed as a search term.
-  * searchFilters:  array of json filters that the consumer passes to this module, [create an anchor](#searchFilters example).
+  * searchFilters:  array of json filters that the consumer passes to this module, [searchFilters Example](#searchfilters-example).
   * sortCategories: array of json categories that the consumer passes ti this module, example.
   * appliedFilters: array of json filters set as input,
   * resultsPage:     
@@ -10,7 +10,8 @@ PROPS:
   * startingResult:  
   * searchResults:  array of object received as search response
 
-(#searchFilters example)
+## searchFilters Example
+```json
   const FILTERS = [
     "Remote",
     "Engineering",
@@ -38,5 +39,5 @@ PROPS:
       ]
     },
 ];
-
+```
 searchCategories example:

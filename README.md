@@ -11,6 +11,7 @@ PROPS:
   * searchResults:  array of object received as search response
 
 ## searchFilters Example
+```json
   const FILTERS = [
     "Remote",
     "Engineering",
@@ -38,5 +39,5 @@ PROPS:
       ]
     },
 ];
-
+```
 searchCategories example:

@@ -40,4 +40,4 @@ PROPS:
     },
 ];
 ```
-searchCategories example:
+

@@ -2,15 +2,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 PROPS:
   * searchQuery:    String that is passed as a search term.
-  * searchFilters:  array of json filters that the consumer passes to this module, example: below.
-  * sortCategories: array of json categories that the consumer passes ti this module, example: below.
+  * searchFilters:  array of json filters that the consumer passes to this module, searchFilters example.
+  * sortCategories: array of json categories that the consumer passes ti this module, example.
   * appliedFilters: array of json filters set as input,
   * resultsPage:     
   * resultsPerPage: 
   * startingResult:  
   * searchResults:  array of object received as search response
 
-searchFilters example:
+[create an anchor](#searchFilters example:)
   const FILTERS = [
     "Remote",
     "Engineering",

@@ -3,6 +3,9 @@
 # dependencies
 /node_modules
 
+# todo list
+todo.todo
+
 # testing
 /coverage
 

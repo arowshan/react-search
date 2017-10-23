@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
+import './search-master.css';
 
 import SearchQuery from './search-query';
 import SearchFilters from './search-filters';
 import SearchSort from './search-sort';
 import SearchResults from './search-results';
-
-import DATA from '../data/data';
 
 class SearchMaster extends Component {
 
@@ -35,6 +36,19 @@ class SearchMaster extends Component {
     
   }
 
+  fetchApi() {
+    axios.get('https://jsonplaceholder.typicode.com/posts')
+    .then((response) => {
+      console.log(response);
+      this.setState({
+        searchResults: response.data
+      })
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
+
   updateQuery(event) {
     this.setState({ searchQuery: event.target.value });
   }
@@ -44,10 +58,10 @@ class SearchMaster extends Component {
   }
 
   updateSearch() {
-    //TODO: Send AJAX with query and filters set
-    this.setState({
-      searchResults: DATA,
-    });
+    setInterval(
+      () => this.fetchApi(),
+      2000
+    );
   }
 
   updateResultsPerPage(event) {
@@ -108,12 +122,20 @@ class SearchMaster extends Component {
   render() {
 
     return (
-      <div>
+      <div className="search-container">
         <SearchQuery
           onChange={this.updateQuery}
           onSearch={this.updateSearch}
         />
-        <SearchFilters searchFilters={this.state.searchFilters}/>
+        <div className="filters-and-results">
+          <SearchFilters searchFilters={this.state.searchFilters}/>
+          <SearchResults
+            searchResults={this.state.searchResults}
+            resultsPage={this.state.resultsPage}
+            resultsPerPage={this.state.resultsPerPage}
+            resultComponent={this.props.resultComponent}
+          />
+        </div>
         <SearchSort 
           resultsCount={this.state.searchResults.length}
           resultsPage={this.state.resultsPage}
@@ -126,14 +148,7 @@ class SearchMaster extends Component {
           sortCategories={this.props.sortCategories}
           sortBy={this.props.sortyBy}
           updateSortBy={this.updateSortBy}
-        />
-        <SearchResults
-          searchResults={this.state.searchResults}
-          resultsPage={this.state.resultsPage}
-          resultsPerPage={this.state.resultsPerPage}
-          resultComponent={this.props.resultComponent}
-        />
-        
+        />   
       </div>
     );
   }

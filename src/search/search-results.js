@@ -11,7 +11,7 @@ class SearchResults extends Component {
       return React.cloneElement(this.props.resultComponent, {
         result: result,
         //TODO:should use id or something general
-        key: result.position
+        key: result.id
       })
     })
   }

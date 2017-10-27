@@ -10,6 +10,8 @@ import SearchResults from './search-results';
 
 class SearchMaster extends Component {
 
+  apiFetchIntervalId;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -36,10 +38,23 @@ class SearchMaster extends Component {
     
   }
 
+  updateSearch() {
+    clearInterval(this.apiFetchIntervalId);
+    this.apiFetchIntervalId = setInterval(
+      () => this.fetchApi(),
+      2000
+    );
+    this.setState({
+      resultsPage: SearchMaster.defaultProps.resultsPage,
+      resultsPerPage: SearchMaster.defaultProps.resultsPerPage,
+      startingResult: SearchMaster.defaultProps.startingResult,
+    });
+  }
+
   fetchApi() {
+    //TODO get url from consumer
     axios.get('https://jsonplaceholder.typicode.com/posts')
     .then((response) => {
-      console.log(response);
       this.setState({
         searchResults: response.data
       })
@@ -55,13 +70,6 @@ class SearchMaster extends Component {
 
   updateFilters() {
     this.setState({ appliedFilters: [...this.state.appliedFilters, ]});
-  }
-
-  updateSearch() {
-    setInterval(
-      () => this.fetchApi(),
-      2000
-    );
   }
 
   updateResultsPerPage(event) {
@@ -153,5 +161,12 @@ class SearchMaster extends Component {
     );
   }
 }
+
+SearchMaster.defaultProps = {
+  resultsPage: 1,
+  resultsPerPage: 25,
+  startingResult: 0,
+}
+
 
 export default SearchMaster;

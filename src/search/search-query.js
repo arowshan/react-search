@@ -46,20 +46,17 @@ class SearchQuery extends Component {
 
   render() {
     return (
-
       <Toolbar>
         <ToolbarGroup>
           <input className="search-input"
-            placeholder="Search..." type="search" 
+            placeholder="Search..." 
             onChange={this.props.onChange}
             onFocus={this.showSearch}
             onBlur={this.hideSearch}
           />
           {this.renderButton()}
-          
         </ToolbarGroup>
       </Toolbar>
-        
     );
   }
 }

@@ -1,6 +1,21 @@
 .search-input {
-    height: 36px;
+    height: 34px;
     padding: 0;
+    width:200px;
+    -webkit-transition: width .5s ease;
+    -moz-transition: width .5s ease;
+    transition: width .5s ease;
+    outline: none;
+}
+
+.search-input:focus {
+    width: 450px;
+    border-right: 0px;
+    border-color: rgba(0,149,255,0.5);
+}
+
+.search-input:hover {
+    border-color: rgba(0,149,255,0.5);
 }
 
 .search-button {

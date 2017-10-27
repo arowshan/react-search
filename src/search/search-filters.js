@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import Checkbox from 'material-ui/Checkbox';
+
+import './search-filter.css';
+
 
 class SearchFilters extends Component {
 
@@ -16,19 +20,22 @@ class SearchFilters extends Component {
       if(typeof(filter)==='string' || typeof(filter)==='number') {
         return (
           <li key={filter}>
-            <input 
-              type='checkbox' ref={path}
+            <Checkbox
+              label={filter}
+              ref={path}
               value={filter}
               onChange={(event) => this.handleChildChange(path, event)}
             />
-            {filter}
           </li> 
         );
       }
       else if(typeof(filter==='object')) {
         return (
-          <li key={Object.keys(filter)[0]}><input type='checkbox'/>
-            {Object.keys(filter)[0]}
+          <li key={Object.keys(filter)[0]}>
+            <Checkbox
+              label={Object.keys(filter)[0]}
+              value={filter}
+            />
             <ul>
               {this.listFilters( Object.keys(filter)[0] , filter[Object.keys(filter)[0]])}
             </ul>

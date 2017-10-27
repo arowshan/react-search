@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import axios from 'axios';
 
 import './search-master.css';
@@ -130,6 +131,7 @@ class SearchMaster extends Component {
   render() {
 
     return (
+      <MuiThemeProvider>
       <div className="search-container">
         <SearchQuery
           onChange={this.updateQuery}
@@ -158,6 +160,7 @@ class SearchMaster extends Component {
           updateSortBy={this.updateSortBy}
         />   
       </div>
+      </MuiThemeProvider>
     );
   }
 }

@@ -27,7 +27,7 @@ class SearchSort extends Component {
             &ensp;&ensp;&ensp;
 
             View: 
-            <select defaultValue={25} onChange={this.props.updateResultsPerPage}>
+            <select value={this.props.resultsPerPage} onChange={this.props.updateResultsPerPage}>
                 <option value="1">1</option>
                 <option value="5">5</option>
                 <option value="25">25</option>

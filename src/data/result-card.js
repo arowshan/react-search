@@ -5,10 +5,9 @@ class ResultCard extends Component {
   render() {
     return (
       <ul>
-        <li>template:</li>
-        <li>Position: {this.props.result.position}</li>
-        <li>State: {this.props.result.state}</li>
-        <li>City: {this.props.result.city}</li>
+        <li>ID: {this.props.result.userId}</li>
+        <li>userId: {this.props.result.id}</li>
+        <li>Text: {this.props.result.title}</li>
       </ul>
     );
   }

@@ -45,7 +45,7 @@ class SearchFilters extends Component {
   render() {
     return (
       //TODO: classNames
-      <div>
+      <div className="search-filter">
         <ul>
           {this.listFilters( 0, this.props.searchFilters)}
         </ul>

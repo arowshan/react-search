@@ -1,0 +1,17 @@
+.search-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-query {
+
+}
+
+.search-filter {
+
+}
+
+.filters-and-results {
+    display: flex;
+    flex-direction: row;
+}

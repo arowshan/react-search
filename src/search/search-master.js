@@ -22,7 +22,7 @@ class SearchMaster extends Component {
       appliedFilters: [],
       //TODO dynamically get this
       resultsPage: 1,
-      resultsPerPage: 25,
+      resultsPerPage: 5,
       startingResult: 0,
       searchResults: [],
       sortBy: ''
@@ -129,6 +129,27 @@ class SearchMaster extends Component {
     });
   }
 
+  renderSortOptions() {
+    if(this.state.searchResults.length>0){
+      return (
+        <SearchSort 
+          resultsCount={this.state.searchResults.length}
+          resultsPage={this.state.resultsPage}
+          resultsPerPage={this.state.resultsPerPage}
+          updateResultsPerPage={this.updateResultsPerPage}
+          nextPage={this.nextPage}
+          prevPage={this.prevPage}
+          setPage={this.setPage}
+          startingResult={this.state.startingResult}
+          sortCategories={this.props.sortCategories}
+          sortBy={this.props.sortyBy}
+          updateSortBy={this.updateSortBy}
+        />
+      )
+    }
+    
+  }
+
 
   render() {
 
@@ -149,19 +170,9 @@ class SearchMaster extends Component {
             resultComponent={this.props.resultComponent}
           />
         </div>
-        <SearchSort 
-          resultsCount={this.state.searchResults.length}
-          resultsPage={this.state.resultsPage}
-          resultsPerPage={this.state.resultsPerPage}
-          updateResultsPerPage={this.updateResultsPerPage}
-          nextPage={this.nextPage}
-          prevPage={this.prevPage}
-          setPage={this.setPage}
-          startingResult={this.state.startingResult}
-          sortCategories={this.props.sortCategories}
-          sortBy={this.props.sortyBy}
-          updateSortBy={this.updateSortBy}
-        />   
+        <div className="sort">
+          {this.renderSortOptions()}
+        </div>
       </div>
       </MuiThemeProvider>
     );
@@ -170,7 +181,7 @@ class SearchMaster extends Component {
 
 SearchMaster.defaultProps = {
   resultsPage: 1,
-  resultsPerPage: 25,
+  resultsPerPage: 5,
   startingResult: 0,
 }
 

@@ -1,0 +1,18 @@
+.sort-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: indigo;
+    color: white;
+    
+}
+
+.sort-feature {
+    flex-basis: 15%;
+    display: flex;
+}
+
+.pages input {
+    text-align: center;
+}

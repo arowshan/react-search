@@ -52,7 +52,7 @@ class SearchFilters extends Component {
   render() {
     return (
       //TODO: classNames
-      <div className="search-filter">
+      <div className="filter-container">
         <ul>
           {this.listFilters( 0, this.props.searchFilters)}
         </ul>

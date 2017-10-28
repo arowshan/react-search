@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './search-results.css'
 
 class SearchResults extends Component {
   
@@ -18,7 +19,8 @@ class SearchResults extends Component {
   
   render() {
     return (
-      <div>
+      <div className="results-container">
+        <span className="search-criteria">search results for [search query] and [search filters]</span>
         {this.listResults()}
       </div>
     );

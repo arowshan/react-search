@@ -1,21 +1,22 @@
 .query-container {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 20px;
 }
 
 .search-input {
     display: flex;
-    height: 34px;
     padding: 0;
-    width:200px;
-    -webkit-transition: width .5s ease;
-    -moz-transition: width .5s ease;
-    transition: width .5s ease;
+    flex-basis: 200px;
+    -webkit-transition: flex .5s ease;
+    -moz-transition: flex .5s ease;
+    transition: flex .5s ease;
     outline: none;
 }
 
 .search-input:focus {
-    width: 450px;
+    flex-basis: 80%;
     border-right: 0px;
     border-color: rgba(0,149,255,0.5);
 }
@@ -26,4 +27,5 @@
 
 .search-button {
     margin-left: 0 !important;
+    width: 60px;
 }

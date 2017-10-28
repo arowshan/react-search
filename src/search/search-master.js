@@ -75,9 +75,9 @@ class SearchMaster extends Component {
     this.setState({ appliedFilters: [...this.state.appliedFilters, ]});
   }
 
-  updateResultsPerPage(event) {
+  updateResultsPerPage(event, index, value) {
     this.setState({
-      resultsPerPage : event.target.value,
+      resultsPerPage : value,
       resultsPage: 1
     });
   }

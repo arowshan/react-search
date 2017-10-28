@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 
 class SearchSort extends Component {
 
@@ -16,7 +20,8 @@ class SearchSort extends Component {
         //TODO: create consts for onthefly calcs below
         //TODO: get values and intervals dynamically
         return (
-        <div>
+        <Toolbar>
+            <ToolbarGroup>
             Show {Math.min(
                 this.props.resultsPerPage * (this.props.resultsPage-1) +1, 
                 this.props.resultsCount)
@@ -24,23 +29,30 @@ class SearchSort extends Component {
                 this.props.resultsPerPage * this.props.resultsPage,
                 this.props.resultsCount)
             } of {this.props.resultsCount}
-            &ensp;&ensp;&ensp;
+            </ToolbarGroup>
 
-            View: 
-            <select value={this.props.resultsPerPage} onChange={this.props.updateResultsPerPage}>
-                <option value="1">1</option>
-                <option value="5">5</option>
-                <option value="25">25</option>
-            </select>
-            &ensp;&ensp;&ensp;
-
+            <ToolbarGroup>
+            View:
+            <SelectField
+                value={this.props.resultsPerPage}
+                onChange={this.props.updateResultsPerPage}
+                style={{width: 75}}
+            >
+                <MenuItem value={1} primaryText="1" />
+                <MenuItem value={5} primaryText="5" />
+                <MenuItem value={25} primaryText="25" />
+            </SelectField>
+            </ToolbarGroup>
+            
+            <ToolbarGroup>
             Sort: 
             {/* TODO: Dynamic default value */}
             <select onChange={this.props.updateSortBy}>
                 {this.listSortCategories()}
             </select>
-            &ensp;&ensp;&ensp;
+            </ToolbarGroup>
 
+            <ToolbarGroup>
             <button onClick={this.props.prevPage}
                 disabled={this.props.resultsPage===1}
             >prev</button>
@@ -57,8 +69,9 @@ class SearchSort extends Component {
                 }
             >next
             </button>
-
-        </div>
+            </ToolbarGroup>
+            
+        </Toolbar>
         );
     }
 }

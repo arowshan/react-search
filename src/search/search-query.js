@@ -21,6 +21,7 @@ class SearchQuery extends Component {
    
     this.showSearch = this.showSearch.bind(this);
     this.hideSearch = this.hideSearch.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     
   }
 
@@ -39,18 +40,24 @@ class SearchQuery extends Component {
     }
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.onSearch();
+    document.activeElement.blur()
+  }
+
   renderButton() {
     if(this.state.searchVisibility) {
       return (
-        <RaisedButton className="search-button" onClick={this.props.onSearch} label="Search" primary={true} />
+        <RaisedButton className="search-button" onClick={this.props.onSearch} label="Search" primary={true}/>
       )
     }
   }
 
   render() {
     return (
-      <Toolbar className="query-container">
-        <ToolbarGroup>
+      <form onSubmit={this.handleSubmit} className="query-container">
+
           <input className="search-input"
             placeholder="Search..." 
             onChange={this.props.queryChange}
@@ -58,9 +65,7 @@ class SearchQuery extends Component {
             onBlur={this.hideSearch}
           />
           <RaisedButton className="search-button" onClick={this.props.onSearch} icon={<SearchIcon />} primary={true} />
-        </ToolbarGroup>
-
-      </Toolbar>
+      </form>
     );
   }
 }

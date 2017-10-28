@@ -66,7 +66,9 @@ class SearchMaster extends Component {
   }
 
   updateQuery(event) {
-    this.setState({ searchQuery: event.target.value });
+    this.setState({ 
+      searchQuery: event.target.value 
+    });
   }
 
   updateFilters() {
@@ -134,7 +136,8 @@ class SearchMaster extends Component {
       <MuiThemeProvider>
       <div className="search-container">
         <SearchQuery
-          onChange={this.updateQuery}
+          searchQuery={this.state.searchQuery}
+          queryChange={this.updateQuery}
           onSearch={this.updateSearch}
         />
         <div className="filters-and-results">

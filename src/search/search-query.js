@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import SearchIcon from 'material-ui/svg-icons/action/search';
+
 
 import './search-query.css';
 
@@ -11,29 +13,30 @@ import PropTypes from 'prop-types';
 
 class SearchQuery extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       searchVisibility : false,
     }
-
+   
     this.showSearch = this.showSearch.bind(this);
-    this.hideSearch = this.hideSearch.bind(this);    
+    this.hideSearch = this.hideSearch.bind(this);
     
   }
 
-  
-
   showSearch() {
+
     this.setState({
       searchVisibility: true
     })
   }
 
   hideSearch() {
-    this.setState({
-      searchVisibility: false
-    })
+    if(this.props.searchQuery=='') {
+      this.setState({
+        searchVisibility: false
+      })
+    }
   }
 
   renderButton() {
@@ -46,16 +49,17 @@ class SearchQuery extends Component {
 
   render() {
     return (
-      <Toolbar>
+      <Toolbar className="query-container">
         <ToolbarGroup>
           <input className="search-input"
             placeholder="Search..." 
-            onChange={this.props.onChange}
+            onChange={this.props.queryChange}
             onFocus={this.showSearch}
             onBlur={this.hideSearch}
           />
-          {this.renderButton()}
+          <RaisedButton className="search-button" onClick={this.props.onSearch} icon={<SearchIcon />} primary={true} />
         </ToolbarGroup>
+
       </Toolbar>
     );
   }

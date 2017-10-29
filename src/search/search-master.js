@@ -156,7 +156,7 @@ class SearchMaster extends Component {
     return (
       <MuiThemeProvider>
       <div className="search-container">
-        <SearchQuery
+        <SearchQuery className="query-container"
           searchQuery={this.state.searchQuery}
           queryChange={this.updateQuery}
           onSearch={this.updateSearch}

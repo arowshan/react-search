@@ -20,7 +20,7 @@ class SearchResults extends Component {
   render() {
     return (
       <div className="results-container">
-        <span className="search-criteria">search results for [search query] and [search filters]</span>
+        {/* <span className="search-criteria">search results for [search query] and [search filters]</span> */}
         {this.listResults()}
       </div>
     );

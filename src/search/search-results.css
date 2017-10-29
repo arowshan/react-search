@@ -2,9 +2,9 @@
     display: flex;
     flex-basis: 80%;
     flex-direction: column;
-    margin-left: 20px;
+    margin: 20px;
 }
 
 .search-criteria {
-    padding: 20px;
+    /* padding: 20px; */
 }

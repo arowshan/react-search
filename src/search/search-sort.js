@@ -32,7 +32,9 @@ class SearchSort extends Component {
                 </div>
                 <div className="sort-feature">
                     <SelectField
-                        floatingLabelText="View"
+                        floatingLabelText="View" floatingLabelFixed={true}
+                        floatingLabelStyle={{color: 'white'}}
+                        labelStyle={{color: 'white'}}
                         value={this.props.resultsPerPage}
                         onChange={this.props.updateResultsPerPage}
                         style={{width: 75}}
@@ -44,7 +46,9 @@ class SearchSort extends Component {
                 </div>
                 <div className="sort-feature">
                     <SelectField
-                        floatingLabelText="Sort By"
+                        floatingLabelText="Sort By" floatingLabelFixed={true}
+                        floatingLabelStyle={{color: 'white'}}
+                        labelStyle={{color: 'white'}}
                         onChange={this.props.updateSortBy}
                         style={{width: 150}}
                     >

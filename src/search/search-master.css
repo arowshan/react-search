@@ -3,11 +3,13 @@
 .search-container {
     display: flex;
     flex-direction: column;
+    align-content: stretch;
     font-family: Roboto;
 }
 
-.search-query {
-
+.query-container {
+    display: flex;
+    background-color: #f5f5f5;
 }
 
 .search-filter {

@@ -25,6 +25,7 @@ class SearchMaster extends Component {
       resultsPerPage: 5,
       startingResult: 0,
       searchResults: [],
+      sortedResults: [],
       sortBy: ''
     }
 
@@ -40,15 +41,18 @@ class SearchMaster extends Component {
   }
 
   updateSearch() {
+    this.fetchApi();
     clearInterval(this.apiFetchIntervalId);
     this.apiFetchIntervalId = setInterval(
       () => this.fetchApi(),
-      2000
+      5000
+      //make Macro
     );
     this.setState({
       resultsPage: SearchMaster.defaultProps.resultsPage,
       resultsPerPage: SearchMaster.defaultProps.resultsPerPage,
       startingResult: SearchMaster.defaultProps.startingResult,
+      sortedResults: SearchMaster.defaultProps.sortedResults
     });
   }
 
@@ -56,9 +60,11 @@ class SearchMaster extends Component {
     //TODO get url from consumer
     axios.get('https://jsonplaceholder.typicode.com/posts')
     .then((response) => {
-      this.setState({
-        searchResults: response.data
-      })
+      if(this.state.searchResults!==response.data) {
+        this.setState({
+          searchResults: response.data
+        })
+      }
     })
     .catch(function (error) {
       console.log(error);
@@ -111,21 +117,27 @@ class SearchMaster extends Component {
   }
 
 // SORTING
-  updateSortBy(event) {
+  updateSortBy(event, index, value) {
     this.setState({
-      sortBy : this.state.sortCategories[event.target.value][0]
+      sortBy : this.state.sortCategories[value]
     }, () => this.sortResults());  
   }
 
   sortResults() {
     let sortedResults = this.state.searchResults.concat().sort(
       (a, b) => {
-        return a[this.state.sortBy].localeCompare(b[this.state.sortBy])
+        if(typeof(a[this.state.sortBy])==='number') {
+          return a[this.state.sortBy] - b[this.state.sortBy];
+        }
+        if(typeof(a[this.state.sortBy])==='string') {
+          return a[this.state.sortBy].localeCompare(b[this.state.sortBy])
+        }
       }
     );
     
+    //use ES6 syntax
     this.setState ({
-      searchResults : sortedResults
+      sortedResults : sortedResults
     });
   }
 
@@ -164,7 +176,7 @@ class SearchMaster extends Component {
         <div className="filters-and-results">
           <SearchFilters searchFilters={this.state.searchFilters}/>
           <SearchResults
-            searchResults={this.state.searchResults}
+            searchResults={this.state.sortedResults.length>0? this.state.sortedResults: this.state.searchResults}
             resultsPage={this.state.resultsPage}
             resultsPerPage={this.state.resultsPerPage}
             resultComponent={this.props.resultComponent}
@@ -183,6 +195,7 @@ SearchMaster.defaultProps = {
   resultsPage: 1,
   resultsPerPage: 5,
   startingResult: 0,
+  sortedResults: []
 }
 
 

@@ -49,6 +49,7 @@ class SearchSort extends Component {
                         floatingLabelText="Sort By" floatingLabelFixed={true}
                         floatingLabelStyle={{color: 'white'}}
                         labelStyle={{color: 'white'}}
+                        value={this.props.sortBy}
                         onChange={this.props.updateSortBy}
                         style={{width: 150}}
                     >
@@ -77,6 +78,10 @@ class SearchSort extends Component {
             </div>
         );
     }
+}
+
+SearchSort.defaultProps = {
+    sortBy: 'ID'
 }
 
 export default SearchSort;

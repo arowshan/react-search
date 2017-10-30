@@ -1,7 +1,6 @@
 const SORTS = {
-     Position: [ 'position' ] ,
-     State: [ 'state' ],
-    //  Framework: ['platform', 'frontend']
+     ID: 'id' ,
+     Title: 'title',
 };
 
 export default SORTS;

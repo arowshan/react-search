@@ -12,7 +12,7 @@ class ResultCard extends Component {
             <ul>
               <li>ID: {this.props.result.id}</li>
               <li>userId: {this.props.result.userId}</li>
-              <li>Text: {this.props.result.title}</li>
+              <li>Title: {this.props.result.title}</li>
             </ul>
           </CardText>
       </Card>

@@ -15,11 +15,14 @@ Questions for Mark:
 Serch UI:
     ☐ decrease width of search button
     ☐ center search and only transition to left
-    ☐ materialize sort ui
-    ☐ card results
+    ✔ materialize sort ui @done (10/30/2017, 8:09:46 AM)
+    ✔ card results @done (10/30/2017, 8:09:44 AM)
     ☐ add spinner till results arrive
     ☐ resolve select alignment with other text on sort
     ☐ add animation to sort and results
+
+Sort:
+    ✔ conflict between sort and interval fetching of api @done (10/30/2017, 8:09:32 AM)
     
 
 

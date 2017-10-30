@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
@@ -51,7 +50,7 @@ class SearchSort extends Component {
                         labelStyle={{color: 'white'}}
                         value={this.props.sortBy}
                         onChange={this.props.updateSortBy}
-                        style={{width: 150}}
+                        style={{width: 125}}
                     >
                         {this.listSortCategories()}
                     </SelectField>
@@ -81,7 +80,7 @@ class SearchSort extends Component {
 }
 
 SearchSort.defaultProps = {
-    sortBy: 'ID'
+    sortBy: 'Position'
 }
 
 export default SearchSort;

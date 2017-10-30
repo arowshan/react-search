@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
-import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import SearchIcon from 'material-ui/svg-icons/action/search';
 
@@ -33,7 +31,7 @@ class SearchQuery extends Component {
   }
 
   hideSearch() {
-    if(this.props.searchQuery=='') {
+    if(this.props.searchQuery==='') {
       this.setState({
         searchVisibility: false
       })

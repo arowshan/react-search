@@ -9,7 +9,7 @@ class SearchFilters extends Component {
   //TODO: parent and children checkbox communication
 
   handleChildChange(path, event) {
-    // console.log(path, ': ', event.target.value, ' : ', event.target.checked);
+    console.log(path, ': ', event.target.value, ' : ', event.target.checked);
     // this.refs['Job Type'].checked = true;
     
     // TODO: create format where each filter is addressable

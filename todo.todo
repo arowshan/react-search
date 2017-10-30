@@ -1,25 +1,28 @@
 Read about:
-    ☐ SMACSS / BEM
+    ✔ SMACSS / BEM @high @done (10/30/2017, 9:58:18 AM)
     ✔ default props @done (10/23/2017, 8:51:05 AM)
     ✔ prop types @done (10/23/2017, 8:51:04 AM)
     ✔ component life cycles @done (10/23/2017, 8:51:03 AM)
 
 Think about:
-    ☐ multiple filters passed through api
+    ☐ multiple filters passed through api @high
     ✔ set interval for pulling if change in result @done (10/23/2017, 11:27:57 AM)
 
 Questions for Mark:
-    can I request an api token?
-    long term nitaac
+    ☐ can I request an api token? @high
+    long term nitaac situation?
+    passing api key securely from frontend?
+    ☐ invite for github?
+     
 
 Serch UI:
-    ☐ decrease width of search button
-    ☐ center search and only transition to left
+    ☐ decrease width of search button @low
+    ☐ center search and only transition to left @low
     ✔ materialize sort ui @done (10/30/2017, 8:09:46 AM)
     ✔ card results @done (10/30/2017, 8:09:44 AM)
-    ☐ add spinner till results arrive
-    ☐ resolve select alignment with other text on sort
-    ☐ add animation to sort and results
+    ☐ add spinner till results arrive @low
+    ☐ resolve select alignment with other text on sort @low
+    ☐ add animation to sort and results @low
 
 Sort:
     ✔ conflict between sort and interval fetching of api @done (10/30/2017, 8:09:32 AM)

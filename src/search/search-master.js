@@ -58,11 +58,21 @@ class SearchMaster extends Component {
 
   fetchApi() {
     //TODO get url from consumer
-    axios.get('https://jsonplaceholder.typicode.com/posts')
+    axios.get('https://data.usajobs.gov/api/Search', {
+      headers: {
+        // 'Host': 'data.usajobs.gov',
+        // 'User-Agent': 'arowshan@metrostarsystems.com',
+        'Authorization-Key': 'oa5FLRYDO+LFrLejBF3hqr0/AYlgQ1JZoA/GXch/47s='
+      },
+      params: {
+        'Keyword': 'S'
+      }
+    })
     .then((response) => {
-      if(this.state.searchResults!==response.data) {
+      console.log(response.data.SearchResult.SearchResultItems);
+      if(this.state.searchResults!==response.data.SearchResult.SearchResultItems) {
         this.setState({
-          searchResults: response.data
+          searchResults: response.data.SearchResult.SearchResultItems
         })
       }
     })
@@ -118,6 +128,7 @@ class SearchMaster extends Component {
 
 // SORTING
   updateSortBy(event, index, value) {
+    console.log(value);
     this.setState({
       sortBy : this.state.sortCategories[value]
     }, () => this.sortResults());  
@@ -129,9 +140,10 @@ class SearchMaster extends Component {
         if(typeof(a[this.state.sortBy])==='number') {
           return a[this.state.sortBy] - b[this.state.sortBy];
         }
-        if(typeof(a[this.state.sortBy])==='string') {
-          return a[this.state.sortBy].localeCompare(b[this.state.sortBy])
+        if(typeof(a.MatchedObjectDescriptor[this.state.sortBy])==='string') {
+          return a.MatchedObjectDescriptor[this.state.sortBy].localeCompare(b.MatchedObjectDescriptor[this.state.sortBy])
         }
+        else return false
       }
     );
     
@@ -159,8 +171,14 @@ class SearchMaster extends Component {
         />
       )
     }
-    
   }
+
+  renderFilterOptions() {
+    if(this.state.searchResults.length>0) {
+      return <SearchFilters searchFilters={this.state.searchFilters}/>
+    }
+  }
+  
 
 
   render() {
@@ -174,7 +192,7 @@ class SearchMaster extends Component {
           onSearch={this.updateSearch}
         />
         <div className="filters-and-results">
-          <SearchFilters searchFilters={this.state.searchFilters}/>
+          {this.renderFilterOptions()}
           <SearchResults
             searchResults={this.state.sortedResults.length>0? this.state.sortedResults: this.state.searchResults}
             resultsPage={this.state.resultsPage}

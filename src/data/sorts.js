@@ -1,6 +1,6 @@
 const SORTS = {
-     ID: 'id' ,
-     Title: 'title',
+     Position: 'PositionTitle' ,
+     Location: 'PositionLocationDisplay',
 };
 
 export default SORTS;

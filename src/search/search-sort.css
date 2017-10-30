@@ -1,7 +1,7 @@
 .sort-container {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     background-color: #311B92;
     color: white;

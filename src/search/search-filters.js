@@ -5,47 +5,25 @@ import './search-filter.css';
 
 
 class SearchFilters extends Component {
-
   //TODO: parent and children checkbox communication
 
-  handleChildChange(path, event) {
-    console.log(path, ': ', event.target.value, ' : ', event.target.checked);
-    // this.refs['Job Type'].checked = true;
-    
-    // TODO: create format where each filter is addressable
-  }
+  // handleChildChange(event) {
+  //   console.log(event.target.checked);
+  // }
 
-  listFilters(path, filters) {
-    return filters.map( (filter) => {
-      if(typeof(filter)==='string' || typeof(filter)==='number') {
+  listFilters(filters) {
+    return filters.map( (filterObj) => { 
+      return Object.keys(filterObj).map( (filterKey) => {
         return (
-          <li key={filter}>
+          <li className="filter--item" key={filterObj[filterKey]}>
             <Checkbox
-              label={filter}
-              ref={path}
-              value={filter}
-              onChange={(event) => this.handleChildChange(path, event)}
+              label={filterKey}
+              value={filterObj[filterKey]}
+              onCheck={this.props.updateAppliedFilters}
             />
           </li> 
         );
-      }
-      else if(typeof(filter==='object')) {
-        return (
-          <li key={Object.keys(filter)[0]}>
-            <Checkbox
-              label={Object.keys(filter)[0]}
-              value={filter}
-            />
-            <ul>
-              {this.listFilters( Object.keys(filter)[0] , filter[Object.keys(filter)[0]])}
-            </ul>
-          </li>
-        )
-      }
-      else {
-        //TODO:throw error for wrong type
-        return false;
-      }
+      })
     });
   }
 
@@ -54,7 +32,7 @@ class SearchFilters extends Component {
       //TODO: classNames
       <div className="filter-container">
         <ul>
-          {this.listFilters( 0, this.props.searchFilters)}
+          {this.listFilters(this.props.searchFilters)}
         </ul>
       </div>
     );

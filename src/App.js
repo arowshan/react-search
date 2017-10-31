@@ -14,7 +14,7 @@ class App extends Component {
       <div className="App">
         <SearchMaster 
           resultComponent={<ResultCard />} 
-          searchFilters={FILTERS}
+          searchFilters={[FILTERS]}
           sortCategories={SORTS}
         />
       </div>

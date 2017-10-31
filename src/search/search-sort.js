@@ -55,7 +55,6 @@ class SearchSort extends Component {
                         {this.listSortCategories()}
                     </SelectField>
                 </div>
-
                 <div className="sort-feature pages">
                     <RaisedButton label="Previous"
                         onClick={this.props.prevPage} 

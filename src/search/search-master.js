@@ -9,6 +9,9 @@ import SearchFilters from './search-filters';
 import SearchSort from './search-sort';
 import SearchResults from './search-results';
 
+//this will be removed when filters are received via ajax call
+import JOBTYPES from '../data/filters1';
+
 class SearchMaster extends Component {
 
   apiFetchIntervalId;
@@ -30,7 +33,7 @@ class SearchMaster extends Component {
     }
 
     this.updateQuery = this.updateQuery.bind(this);
-    this.updateFilters = this.updateFilters.bind(this);
+    this.updateAppliedFilters = this.updateAppliedFilters.bind(this);
     this.updateSearch = this.updateSearch.bind(this);
     this.updateResultsPerPage = this.updateResultsPerPage.bind(this);
     this.nextPage = this.nextPage.bind(this);
@@ -40,12 +43,23 @@ class SearchMaster extends Component {
     
   }
 
+  componentDidMount() {
+    this.feedFilters(JOBTYPES);
+  }
+
+  feedFilters(newFilter) {
+    //some ajax
+    this.setState({
+      searchFilters: [...this.state.searchFilters, newFilter]
+    })
+  }
+
   updateSearch() {
     this.fetchApi();
     clearInterval(this.apiFetchIntervalId);
     this.apiFetchIntervalId = setInterval(
       () => this.fetchApi(),
-      5000
+      5000 //ms
       //make Macro
     );
     this.setState({
@@ -58,18 +72,23 @@ class SearchMaster extends Component {
 
   fetchApi() {
     //TODO get url from consumer
+    let params = {
+      'Keyword': this.state.searchQuery,
+      'ResultsPerPage':50
+    };
+    for(let filter of this.state.appliedFilters) {
+      params[filter] = true;
+    }
     axios.get('https://data.usajobs.gov/api/Search', {
       headers: {
         // 'Host': 'data.usajobs.gov',
         // 'User-Agent': 'arowshan@metrostarsystems.com',
         'Authorization-Key': 'oa5FLRYDO+LFrLejBF3hqr0/AYlgQ1JZoA/GXch/47s='
       },
-      params: {
-        'Keyword': 'S'
-      }
+      params: params
     })
     .then((response) => {
-      console.log(response.data.SearchResult.SearchResultItems);
+      // console.log(response.data.SearchResult.SearchResultItems);
       if(this.state.searchResults!==response.data.SearchResult.SearchResultItems) {
         this.setState({
           searchResults: response.data.SearchResult.SearchResultItems
@@ -87,8 +106,20 @@ class SearchMaster extends Component {
     });
   }
 
-  updateFilters() {
-    this.setState({ appliedFilters: [...this.state.appliedFilters, ]});
+  updateAppliedFilters(event) {
+    if(event.target.checked) {
+      this.setState({ 
+        appliedFilters: [...this.state.appliedFilters, event.target.value]
+      });
+    }
+    else {
+      this.setState({ 
+        appliedFilters: this.state.appliedFilters.filter(
+          (_, i) => i !== this.state.appliedFilters.indexOf(event.target.value)
+        )
+      })
+    }
+    
   }
 
   updateResultsPerPage(event, index, value) {
@@ -128,20 +159,20 @@ class SearchMaster extends Component {
 
 // SORTING
   updateSortBy(event, index, value) {
-    console.log(value);
     this.setState({
-      sortBy : this.state.sortCategories[value]
+      sortBy : value
     }, () => this.sortResults());  
   }
 
   sortResults() {
+    const sortCategory = this.state.sortCategories[this.state.sortBy];
     let sortedResults = this.state.searchResults.concat().sort(
       (a, b) => {
-        if(typeof(a[this.state.sortBy])==='number') {
-          return a[this.state.sortBy] - b[this.state.sortBy];
+        if(typeof(a[sortCategory])==='number') {
+          return a[sortCategory] - b[sortCategory];
         }
-        if(typeof(a.MatchedObjectDescriptor[this.state.sortBy])==='string') {
-          return a.MatchedObjectDescriptor[this.state.sortBy].localeCompare(b.MatchedObjectDescriptor[this.state.sortBy])
+        if(typeof(a.MatchedObjectDescriptor[sortCategory])==='string') {
+          return a.MatchedObjectDescriptor[sortCategory].localeCompare(b.MatchedObjectDescriptor[sortCategory])
         }
         else return false
       }
@@ -165,8 +196,8 @@ class SearchMaster extends Component {
           prevPage={this.prevPage}
           setPage={this.setPage}
           startingResult={this.state.startingResult}
-          sortCategories={this.props.sortCategories}
-          sortBy={this.props.sortyBy}
+          sortCategories={this.state.sortCategories}
+          sortBy={this.state.sortBy}
           updateSortBy={this.updateSortBy}
         />
       )
@@ -175,7 +206,12 @@ class SearchMaster extends Component {
 
   renderFilterOptions() {
     if(this.state.searchResults.length>0) {
-      return <SearchFilters searchFilters={this.state.searchFilters}/>
+      return (
+        <SearchFilters 
+          searchFilters={this.state.searchFilters}
+          updateAppliedFilters={this.updateAppliedFilters}
+        />
+      )
     }
   }
   

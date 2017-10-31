@@ -6,13 +6,16 @@ Read about:
 
 Think about:
     ☐ multiple filters passed through api @high
+    ☐ large results in response
     ✔ set interval for pulling if change in result @done (10/23/2017, 11:27:57 AM)
 
+
 Questions for Mark:
-    ☐ can I request an api token? @high
+    ✔ can I request an api token? @high @done (10/31/2017, 6:29:29 AM)
     long term nitaac situation?
     passing api key securely from frontend?
     ☐ invite for github?
+    
      
 
 Serch UI:
@@ -23,6 +26,8 @@ Serch UI:
     ☐ add spinner till results arrive @low
     ☐ resolve select alignment with other text on sort @low
     ☐ add animation to sort and results @low
+    ☐ add no result found case @low 
+    ☐ make height of cards uniform @low 
 
 Sort:
     ✔ conflict between sort and interval fetching of api @done (10/30/2017, 8:09:32 AM)

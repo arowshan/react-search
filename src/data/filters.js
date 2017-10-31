@@ -1,29 +1,11 @@
-const FILTERS = [
-    "Remote",
-    "Engineering",
-    "Management",
-    "Entry level",
-    "Senior level",
-    {
-      "Job Type" : [
-        "Full-time",
-        "Part-time",
-        "Contract",
-        "Internship"
-      ]
-    },
-    {
-      "State" : [
-        "DC",
-        {
-          "VA" : [
-            "Arlington",
-            "Reston"
-          ]
-        },
-        "GA"
-      ]
-    },
-];
+const FILTERS = {
+  "Relocation": "RelocationIndicator",
+  "Most Recent": "ExcludeJOAOpenFor30Days",
+  "SES": "SES",
+  "Student": "Student",
+  "Internship": "Internship",
+  "Recent Grad": "RecentGrad"
+}
+
 
 export default FILTERS;

@@ -2,7 +2,9 @@ Read about:
     ✔ SMACSS / BEM @high @done (10/30/2017, 9:58:18 AM)
     ✔ default props @done (10/23/2017, 8:51:05 AM)
     ✔ prop types @done (10/23/2017, 8:51:04 AM)
-    ✔ component life cycles @done (10/23/2017, 8:51:03 AM)
+    ✔ component life cycles @done (10/23/2017, 8:51:03 AM) 
+    ☐ gitbook
+    ☐ jast
 
 Think about:
     ☐ multiple filters passed through api @high
@@ -14,7 +16,7 @@ Questions for Mark:
     ✔ can I request an api token? @high @done (10/31/2017, 6:29:29 AM)
     long term nitaac situation?
     passing api key securely from frontend?
-    ☐ invite for github?
+    ✔ invite for github? @done (10/31/2017, 10:39:38 AM)
     
      
 
@@ -28,14 +30,11 @@ Serch UI:
     ☐ add animation to sort and results @low
     ☐ add no result found case @low 
     ☐ make height of cards uniform @low 
+    ☐ add clear and apply to filters @today 
+
 
 Sort:
     ✔ conflict between sort and interval fetching of api @done (10/30/2017, 8:09:32 AM)
-    
-
-
-
-
 
 
     

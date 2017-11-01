@@ -17,6 +17,7 @@ class App extends Component {
           searchFilters={[FILTERS]}
           sortCategories={SORTS}
           searchResultsPath={'data.SearchResult.SearchResultItems'}
+          url={'https://data.usajobs.gov/api/Search'}
         />
       </div>
     );

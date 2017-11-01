@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import axios from 'axios';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import './search-master.css';
 
@@ -15,6 +16,7 @@ import JOBTYPES from '../data/filters1';
 class SearchMaster extends Component {
 
   apiFetchIntervalId;
+  // isNewFilterApplied = true;
 
   constructor(props) {
     super(props);
@@ -29,7 +31,8 @@ class SearchMaster extends Component {
       startingResult: 0,
       searchResults: [],
       sortedResults: [],
-      sortBy: ''
+      sortBy: '',
+      isNewFilterApplied: true
     }
 
     this.updateQuery = this.updateQuery.bind(this);
@@ -55,10 +58,24 @@ class SearchMaster extends Component {
   }
 
   updateSearch() {
-    this.fetchApi();
+    const url = this.props.url;
+    const headers = { 'Authorization-Key': 'oa5FLRYDO+LFrLejBF3hqr0/AYlgQ1JZoA/GXch/47s='};
+    const params = {
+      'Keyword': this.state.searchQuery,
+      'ResultsPerPage':50
+    };
+    if(this.state.isNewFilterApplied) {
+      for(let filter of this.state.appliedFilters) {
+        params[filter] = true;
+      }
+      this.setState({
+        isNewFilterApplied : false
+      });
+    }
+    this.fetchApi(url, headers, params);
     clearInterval(this.apiFetchIntervalId);
     this.apiFetchIntervalId = setInterval(
-      () => this.fetchApi(),
+      () => this.fetchApi(url, headers, params),
       5000 //ms
       //make Macro
     );
@@ -70,21 +87,10 @@ class SearchMaster extends Component {
     });
   }
 
-  fetchApi() {
-    //TODO get url from consumer
-    let params = {
-      'Keyword': this.state.searchQuery,
-      'ResultsPerPage':50
-    };
-    for(let filter of this.state.appliedFilters) {
-      params[filter] = true;
-    }
-    axios.get('https://data.usajobs.gov/api/Search', {
-      headers: {
-        // 'Host': 'data.usajobs.gov',
-        // 'User-Agent': 'arowshan@metrostarsystems.com',
-        'Authorization-Key': 'oa5FLRYDO+LFrLejBF3hqr0/AYlgQ1JZoA/GXch/47s='
-      },
+  fetchApi(url, headers, params) {
+    axios.get(
+      url, {
+      headers: headers,
       params: params
     })
     .then((response) => {
@@ -98,7 +104,6 @@ class SearchMaster extends Component {
           searchResults: tempResults
         })
       }
-      
     })
     .catch(function (error) {
       console.log(error);
@@ -112,6 +117,9 @@ class SearchMaster extends Component {
   }
 
   updateAppliedFilters(event) {
+    this.setState({
+      isNewFilterApplied: true
+    });
     if(event.target.checked) {
       this.setState({ 
         appliedFilters: [...this.state.appliedFilters, event.target.value]
@@ -124,7 +132,6 @@ class SearchMaster extends Component {
         )
       })
     }
-    
   }
 
   updateResultsPerPage(event, index, value) {
@@ -223,6 +230,16 @@ class SearchMaster extends Component {
       )
     }
   }
+
+  renderFilterButtons() {
+    if(this.state.isNewFilterApplied) {
+      return (
+        <div className="applyButton">
+          <RaisedButton onClick={this.updateSearch} label="Apply" primary={true} />
+        </div>
+      )
+    }
+  }
   
 
 
@@ -237,13 +254,18 @@ class SearchMaster extends Component {
           onSearch={this.updateSearch}
         />
         <div className="filters-and-results">
-          {this.renderFilterOptions()}
-          <SearchResults
-            searchResults={this.state.sortedResults.length>0? this.state.sortedResults: this.state.searchResults}
-            resultsPage={this.state.resultsPage}
-            resultsPerPage={this.state.resultsPerPage}
-            resultComponent={this.props.resultComponent}
-          />
+          <div>
+            {this.renderFilterOptions()}
+            {this.renderFilterButtons()}
+          </div>
+          <div>
+            <SearchResults
+              searchResults={this.state.sortedResults.length>0? this.state.sortedResults: this.state.searchResults}
+              resultsPage={this.state.resultsPage}
+              resultsPerPage={this.state.resultsPerPage}
+              resultComponent={this.props.resultComponent}
+            />
+          </div>
         </div>
         <div className="sort">
           {this.renderSortOptions()}

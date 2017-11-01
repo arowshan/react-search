@@ -16,6 +16,7 @@ class App extends Component {
           resultComponent={<ResultCard />} 
           searchFilters={[FILTERS]}
           sortCategories={SORTS}
+          searchResultsPath={'data.SearchResult.SearchResultItems'}
         />
       </div>
     );

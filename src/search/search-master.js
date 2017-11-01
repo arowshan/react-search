@@ -88,12 +88,17 @@ class SearchMaster extends Component {
       params: params
     })
     .then((response) => {
-      // console.log(response.data.SearchResult.SearchResultItems);
-      if(this.state.searchResults!==response.data.SearchResult.SearchResultItems) {
+      const resultsPath = this.props.searchResultsPath.split('.');
+      let tempResults = response;
+      for(let key of resultsPath) {
+        tempResults = tempResults[key]
+      }
+      if(this.state.searchResults!==tempResults) {
         this.setState({
-          searchResults: response.data.SearchResult.SearchResultItems
+          searchResults: tempResults
         })
       }
+      
     })
     .catch(function (error) {
       console.log(error);
@@ -165,14 +170,18 @@ class SearchMaster extends Component {
   }
 
   sortResults() {
-    const sortCategory = this.state.sortCategories[this.state.sortBy];
+    const sortCategoryPath = this.state.sortCategories[this.state.sortBy].split('.');
     let sortedResults = this.state.searchResults.concat().sort(
       (a, b) => {
-        if(typeof(a[sortCategory])==='number') {
-          return a[sortCategory] - b[sortCategory];
+        for (let key of sortCategoryPath) {
+          a = a[key];
+          b = b[key];
         }
-        if(typeof(a.MatchedObjectDescriptor[sortCategory])==='string') {
-          return a.MatchedObjectDescriptor[sortCategory].localeCompare(b.MatchedObjectDescriptor[sortCategory])
+        if(typeof(a)==='number') {
+          return a - b;
+        }
+        if(typeof(a)==='string') {
+          return a.localeCompare(b)
         }
         else return false
       }

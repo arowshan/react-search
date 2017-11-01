@@ -55,7 +55,6 @@ class SearchQuery extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="query-container">
-
           <input className="search-input"
             placeholder="Search..." 
             onChange={this.props.queryChange}

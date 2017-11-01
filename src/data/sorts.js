@@ -1,6 +1,6 @@
 const SORTS = {
-     "Position": "PositionTitle" ,
-     "Location": "PositionLocationDisplay",
+     "Position": "MatchedObjectDescriptor.PositionTitle" ,
+     "Location": "MatchedObjectDescriptor.PositionLocationDisplay",
 };
 
 export default SORTS;

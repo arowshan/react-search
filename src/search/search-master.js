@@ -32,7 +32,7 @@ class SearchMaster extends Component {
       searchResults: [],
       sortedResults: [],
       sortBy: '',
-      isNewFilterApplied: true
+      isNewFilterApplied: false
     }
 
     this.updateQuery = this.updateQuery.bind(this);

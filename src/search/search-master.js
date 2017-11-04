@@ -43,17 +43,18 @@ class SearchMaster extends Component {
     this.prevPage = this.prevPage.bind(this);
     this.setPage = this.setPage.bind(this);
     this.updateSortBy = this.updateSortBy.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
     
   }
 
   componentDidMount() {
-    this.feedFilters(JOBTYPES);
+    
   }
 
   feedFilters(newFilter) {
     //some ajax
     this.setState({
-      searchFilters: [...this.state.searchFilters, newFilter]
+      searchFilters: this.state.searchFilters.concat([newFilter])
     })
   }
 

@@ -4,18 +4,18 @@ Read about:
     ✔ prop types @done (10/23/2017, 8:51:04 AM)
     ✔ component life cycles @done (10/23/2017, 8:51:03 AM) 
     ☐ gitbook
-    ☐ jast
+    ☐ jest
 
 Think about:
-    ☐ multiple filters passed through api @high
+    ✔ multiple filters passed through api @high @done (11/4/2017, 1:22:53 PM)
     ☐ large results in response
     ✔ set interval for pulling if change in result @done (10/23/2017, 11:27:57 AM)
 
 
 Questions for Mark:
     ✔ can I request an api token? @high @done (10/31/2017, 6:29:29 AM)
-    long term nitaac situation?
-    passing api key securely from frontend?
+    ✔ long term nitaac situation? @done (11/4/2017, 1:23:16 PM)
+    ✔ passing api key securely from frontend? @done (11/4/2017, 1:23:22 PM)
     ✔ invite for github? @done (10/31/2017, 10:39:38 AM)
     
      

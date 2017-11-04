@@ -1,5 +1,5 @@
-const tempAnimation = global.requestAnimationFrame = function(callback) {
-    setTimeout(callback, 0);
-}
+// const tempAnimation = global.requestAnimationFrame = function(callback) {
+//     setTimeout(callback, 0);
+// }
 
-export default tempAnimation;
+// export default tempAnimation;

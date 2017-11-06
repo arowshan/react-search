@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <div className="App">
         <SearchMaster 
-          resultComponent={<ResultCard />} 
+          resultComponent={<ResultCard />}
           searchFilters={[FILTERS]}
           sortCategories={SORTS}
           searchResultsPath={'data.SearchResult.SearchResultItems'}

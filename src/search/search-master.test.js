@@ -2,10 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
 import SearchMaster from './search-master';
+import renderer from 'react-test-renderer';
 
 
 
-describe('Component level', () => {
+describe('Components rendered', () => {
   var wrapper;
 
   beforeEach(() => {
@@ -39,5 +40,19 @@ describe('Component level', () => {
     expect(wrapper.find('SearchFilters').length).toBe(1);
   });
   
-})
+});
+
+describe('Methods', () => {
+
+  var tree;
+
+  beforeEach(() => {
+    tree = renderer.create(<SearchMaster />);
+  });
+
+  test('sorts properly', () => {
+    console.log(tree.getInstance().sortResults);
+    expect(1).toBe(1);
+  });
+});
 

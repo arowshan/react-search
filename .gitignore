@@ -2,7 +2,6 @@
 
 # documentation
 /_book
-/docs
 
 # dependencies
 /node_modules

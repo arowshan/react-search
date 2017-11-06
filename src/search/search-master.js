@@ -10,9 +10,6 @@ import SearchFilters from './search-filters';
 import SearchSort from './search-sort';
 import SearchResults from './search-results';
 
-//this will be removed when filters are received via ajax call
-import JOBTYPES from '../data/filters1';
-
 class SearchMaster extends Component {
 
   apiFetchIntervalId;
@@ -42,13 +39,7 @@ class SearchMaster extends Component {
     this.nextPage = this.nextPage.bind(this);
     this.prevPage = this.prevPage.bind(this);
     this.setPage = this.setPage.bind(this);
-    this.updateSortBy = this.updateSortBy.bind(this);
-    this.componentDidMount = this.componentDidMount.bind(this);
-    
-  }
-
-  componentDidMount() {
-    
+    this.updateSortBy = this.updateSortBy.bind(this);    
   }
 
   feedFilters(newFilter) {

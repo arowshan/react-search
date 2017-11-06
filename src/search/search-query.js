@@ -24,7 +24,6 @@ class SearchQuery extends Component {
   }
 
   showSearch() {
-
     this.setState({
       searchVisibility: true
     })

@@ -5,9 +5,8 @@ import SearchMaster from './search-master';
 import renderer from 'react-test-renderer';
 
 
-
 describe('Components rendered', () => {
-  var wrapper;
+  let wrapper;
 
   beforeEach(() => {
     wrapper = shallow(<SearchMaster />);
@@ -41,18 +40,3 @@ describe('Components rendered', () => {
   });
   
 });
-
-describe('Methods', () => {
-
-  var tree;
-
-  beforeEach(() => {
-    tree = renderer.create(<SearchMaster />);
-  });
-
-  test('sorts properly', () => {
-    console.log(tree.getInstance().sortResults);
-    expect(1).toBe(1);
-  });
-});
-

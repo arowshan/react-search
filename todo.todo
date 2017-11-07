@@ -36,6 +36,9 @@ Serch UI:
 Sort:
     ✔ conflict between sort and interval fetching of api @done (10/30/2017, 8:09:32 AM)
 
+Bugs:
+    ☐ look into search after search with filter @low
+
 
     
 

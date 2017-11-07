@@ -59,6 +59,7 @@ class SearchQuery extends Component {
             onChange={this.props.queryChange}
             onFocus={this.showSearch}
             onBlur={this.hideSearch}
+            name="searchInput"
           />
           <RaisedButton className="search-button" onClick={this.props.onSearch} icon={<SearchIcon />} primary={true} />
       </form>

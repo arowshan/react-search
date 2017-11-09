@@ -52,18 +52,19 @@ class SearchMaster extends Component {
   updateSearch() {
     const url = this.props.url;
     const headers = { 'Authorization-Key': 'oa5FLRYDO+LFrLejBF3hqr0/AYlgQ1JZoA/GXch/47s='};
-    const params = {
+    let params = {
       'Keyword': this.state.searchQuery,
       'ResultsPerPage':50
     };
-    if(this.state.isNewFilterApplied) {
-      for(let filter of this.state.appliedFilters) {
-        params[filter] = true;
-      }
-      this.setState({
-        isNewFilterApplied : false
-      });
+
+    for(let item of this.state.appliedFilters) {
+     params[Object.keys(item)[0]] = item[Object.keys(item)[0]];
     }
+
+    this.setState({
+      isNewFilterApplied : false
+    });
+
     this.fetchApi(url, headers, params);
     clearInterval(this.apiFetchIntervalId);
     this.apiFetchIntervalId = setInterval(
@@ -108,22 +109,13 @@ class SearchMaster extends Component {
     });
   }
 
-  updateAppliedFilters(event) {
+  updateAppliedFilters(appliedFilters) {
     this.setState({
       isNewFilterApplied: true
     });
-    if(event.target.checked) {
-      this.setState({ 
-        appliedFilters: [...this.state.appliedFilters, event.target.value]
-      });
-    }
-    else {
-      this.setState({ 
-        appliedFilters: this.state.appliedFilters.filter(
-          (_, i) => i !== this.state.appliedFilters.indexOf(event.target.value)
-        )
-      })
-    }
+    this.setState({ 
+      appliedFilters: appliedFilters
+    });
   }
 
   updateResultsPerPage(event, index, value) {
@@ -249,7 +241,7 @@ class SearchMaster extends Component {
             {this.renderFilterOptions()}
             {this.renderFilterButtons()}
           </div>
-          <div>
+          <div className="results-container">
             <SearchResults
               searchResults={this.state.sortedResults.length>0? this.state.sortedResults: this.state.searchResults}
               resultsPage={this.state.resultsPage}

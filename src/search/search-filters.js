@@ -1,21 +1,9 @@
 import React, { Component } from 'react';
-import Checkbox from 'material-ui/Checkbox';
 
 import './search-filter.css';
 
 
 class SearchFilters extends Component {
-  //TODO: parent and children checkbox communication
-
-  // handleChildChange(event) {
-  //   console.log(event.target.checked);
-  // }\
-  constructor() {
-    super()
-    this.state = {
-      appliedFilters: []
-    }
-  }
 
   checkChildren(event, filter) {
     if(filter.children){
@@ -23,6 +11,17 @@ class SearchFilters extends Component {
         this.refs[child.keyword].checked = event.target.checked;
       }
     }
+    this.updateAppliedFilters();
+  }
+
+  updateAppliedFilters() {
+    let appliedFilters = [];
+    for( let item of Object.keys(this.refs) ) {
+      if(this.refs[item].type==='checkbox') {
+        appliedFilters.push({ [this.refs[item].value]: this.refs[item].checked })
+      }
+    }
+    this.props.updateAppliedFilters(appliedFilters);
   }
 
   listFilters(filters) {
@@ -57,7 +56,6 @@ class SearchFilters extends Component {
 
   render() {
     return (
-      //TODO: classNames
       <div className="filter-container">
         {this.listFilters(this.props.searchFilters)}
       </div>

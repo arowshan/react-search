@@ -236,7 +236,6 @@ class SearchMaster extends Component {
 
 
   render() {
-
     return (
       <MuiThemeProvider>
       <div className="search-container">

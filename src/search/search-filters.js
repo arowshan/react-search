@@ -9,18 +9,32 @@ class SearchFilters extends Component {
 
   // handleChildChange(event) {
   //   console.log(event.target.checked);
-  // }
+  // }\
+  constructor() {
+    super()
+    this.state = {
+      appliedFilters: []
+    }
+  }
+
+  checkChildren(event, filter) {
+    if(filter.children){
+      for (let child of filter.children) {
+        this.refs[child.keyword].checked = event.target.checked;
+      }
+    }
+  }
 
   listFilters(filters) {
     return filters.map( (filterObj) => {
       if(filterObj.children && filterObj.children.length>0) {
         return (
             <li>
-              <Checkbox
-                label={filterObj.name}
+              <input type="checkbox"
+                ref={filterObj.keyword}
                 value={filterObj.keyword}
-                onCheck={this.props.updateAppliedFilters}
-              />
+                onClick={(event) => this.checkChildren(event, filterObj)}
+              />{filterObj.name}
               <ul>
                 {this.listFilters(filterObj.children)}
               </ul>
@@ -30,11 +44,11 @@ class SearchFilters extends Component {
       else {
         return (
           <li>
-            <Checkbox
-              label={filterObj.name}
+            <input type="checkbox"
+              ref={filterObj.keyword}
               value={filterObj.keyword}
-              onCheck={this.props.updateAppliedFilters}
-            />
+              onClick={(event) => this.checkChildren(event, filterObj)}
+            />{filterObj.name}
           </li>
         );
       }

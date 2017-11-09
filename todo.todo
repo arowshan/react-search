@@ -1,10 +1,16 @@
+TODO:
+    ☐ remove all material ui compoenents from module
+    ☐ responsiveness stacked vs L
+    ☐ Filters slide animation
+    ☐ remove axios
+
 Read about:
     ✔ SMACSS / BEM @high @done (10/30/2017, 9:58:18 AM)
     ✔ default props @done (10/23/2017, 8:51:05 AM)
     ✔ prop types @done (10/23/2017, 8:51:04 AM)
     ✔ component life cycles @done (10/23/2017, 8:51:03 AM) 
     ✔ gitbook @done (11/6/2017, 11:58:16 AM)
-    ☐ jest
+    ✔ jest @done (11/9/2017, 1:37:01 PM)
 
 Think about:
     ✔ multiple filters passed through api @high @done (11/4/2017, 1:22:53 PM)
@@ -18,7 +24,6 @@ Questions for Mark:
     ✔ passing api key securely from frontend? @done (11/4/2017, 1:23:22 PM)
     ✔ invite for github? @done (10/31/2017, 10:39:38 AM)
     
-     
 
 Serch UI:
     ☐ decrease width of search button @low
@@ -26,7 +31,7 @@ Serch UI:
     ✔ materialize sort ui @done (10/30/2017, 8:09:46 AM)
     ✔ card results @done (10/30/2017, 8:09:44 AM)
     ☐ add spinner till results arrive @low
-    ☐ resolve select alignment with other text on sort @low
+    ✔ resolve select alignment with other text on sort @low @done (11/9/2017, 1:37:39 PM)
     ☐ add animation to sort and results @low
     ☐ add no result found case @low 
     ☐ make height of cards uniform @low 

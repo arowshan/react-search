@@ -13,7 +13,6 @@ import SearchResults from './search-results';
 class SearchMaster extends Component {
 
   apiFetchIntervalId;
-  // isNewFilterApplied = true;
 
   constructor(props) {
     super(props);
@@ -42,20 +41,11 @@ class SearchMaster extends Component {
     this.updateSortBy = this.updateSortBy.bind(this);    
   }
 
-  // feedFilters(newFilter) {
-  //   //some ajax
-  //   this.setState({
-  //     searchFilters: this.state.searchFilters.concat([newFilter])
-  //   })
-  // }
-
   updateSearch() {
     const url = this.props.url;
-    const headers = { 'Authorization-Key': 'oa5FLRYDO+LFrLejBF3hqr0/AYlgQ1JZoA/GXch/47s='};
-    let params = {
-      'Keyword': this.state.searchQuery,
-      'ResultsPerPage':50
-    };
+    const headers = this.props.headers;
+    let params = this.props.params;
+    Object.assign(params, {[this.props.queryKeyword]: this.state.searchQuery});
 
     for(let item of this.state.appliedFilters) {
      params[Object.keys(item)[0]] = item[Object.keys(item)[0]];

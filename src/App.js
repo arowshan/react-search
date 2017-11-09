@@ -9,6 +9,12 @@ import SORTS from './data/sorts';
 
 class App extends Component {
 
+  url = 'https://data.usajobs.gov/api/Search';
+  headers = { 'Authorization-Key': 'oa5FLRYDO+LFrLejBF3hqr0/AYlgQ1JZoA/GXch/47s='};
+  params = {
+    'ResultsPerPage': 50
+  };
+
   render() {
     return (
       <div className="App">
@@ -16,8 +22,11 @@ class App extends Component {
           resultComponent={<ResultCard />}
           searchFilters={FILTERS}
           sortCategories={SORTS}
+          queryKeyword='Keyword'
           searchResultsPath={'data.SearchResult.SearchResultItems'}
-          url={'https://data.usajobs.gov/api/Search'}
+          url={this.url}
+          headers={this.headers}
+          params={this.params}
         />
       </div>
     );

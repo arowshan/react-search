@@ -28,7 +28,7 @@ class SearchFilters extends Component {
     return filters.map( (filterObj) => {
       if(filterObj.children && filterObj.children.length>0) {
         return (
-            <li>
+            <li key={filterObj.keyword}>
               <input type="checkbox"
                 ref={filterObj.keyword}
                 value={filterObj.keyword}
@@ -42,7 +42,7 @@ class SearchFilters extends Component {
       }
       else {
         return (
-          <li>
+          <li key={filterObj.keyword}>
             <input type="checkbox"
               ref={filterObj.keyword}
               value={filterObj.keyword}

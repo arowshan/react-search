@@ -12,18 +12,32 @@ class SearchFilters extends Component {
   // }
 
   listFilters(filters) {
-    return filters.map( (filterObj) => { 
-      return Object.keys(filterObj).map( (filterKey) => {
+    return filters.map( (filterObj) => {
+      if(filterObj.children && filterObj.children.length>0) {
         return (
-          <li className="filter--item" key={filterObj[filterKey]}>
+            <li>
+              <Checkbox
+                label={filterObj.name}
+                value={filterObj.keyword}
+                onCheck={this.props.updateAppliedFilters}
+              />
+              <ul>
+                {this.listFilters(filterObj.children)}
+              </ul>
+            </li>
+        );
+      }
+      else {
+        return (
+          <li>
             <Checkbox
-              label={filterKey}
-              value={filterObj[filterKey]}
+              label={filterObj.name}
+              value={filterObj.keyword}
               onCheck={this.props.updateAppliedFilters}
             />
-          </li> 
+          </li>
         );
-      })
+      }
     });
   }
 
@@ -31,9 +45,7 @@ class SearchFilters extends Component {
     return (
       //TODO: classNames
       <div className="filter-container">
-        <ul>
-          {this.listFilters(this.props.searchFilters)}
-        </ul>
+        {this.listFilters(this.props.searchFilters)}
       </div>
     );
   }

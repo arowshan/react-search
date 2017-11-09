@@ -42,12 +42,12 @@ class SearchMaster extends Component {
     this.updateSortBy = this.updateSortBy.bind(this);    
   }
 
-  feedFilters(newFilter) {
-    //some ajax
-    this.setState({
-      searchFilters: this.state.searchFilters.concat([newFilter])
-    })
-  }
+  // feedFilters(newFilter) {
+  //   //some ajax
+  //   this.setState({
+  //     searchFilters: this.state.searchFilters.concat([newFilter])
+  //   })
+  // }
 
   updateSearch() {
     const url = this.props.url;
@@ -213,14 +213,14 @@ class SearchMaster extends Component {
   }
 
   renderFilterOptions() {
-    if(this.state.searchResults.length>0) {
+    // if(this.state.searchResults.length>0) {
       return (
         <SearchFilters 
           searchFilters={this.state.searchFilters}
           updateAppliedFilters={this.updateAppliedFilters}
         />
       )
-    }
+    // }
   }
 
   renderFilterButtons() {
@@ -246,7 +246,7 @@ class SearchMaster extends Component {
           onSearch={this.updateSearch}
         />
         <div className="filters-and-results">
-          <div>
+          <div className="filters-container">
             {this.renderFilterOptions()}
             {this.renderFilterButtons()}
           </div>

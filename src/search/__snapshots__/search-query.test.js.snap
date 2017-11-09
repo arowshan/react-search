@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components rendered should render form 1`] = `
+<form
+  className="query-container"
+  onSubmit={[Function]}
+>
+  <input
+    className="search-input"
+    name="searchInput"
+    onBlur={[Function]}
+    onFocus={[Function]}
+    placeholder="Search..."
+  />
+  <RaisedButton
+    className="search-button"
+    disabled={false}
+    fullWidth={false}
+    icon={<ActionSearch />}
+    labelPosition="after"
+    primary={true}
+    secondary={false}
+  />
+</form>
+`;

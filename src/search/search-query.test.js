@@ -20,5 +20,13 @@ describe('Components rendered', () => {
   test('has a button with search-button class', () => {
     expect(wrapper.find('.search-button').length).toBe(1);
   });
+
+  test("should render form", () => {
+    expect(wrapper.find("form")).toMatchSnapshot();
+  });
+
+  // test("should render input", () => {
+  //   expect(wrapper.find("input")).toMatchSnapshot();
+  // });
   
 });

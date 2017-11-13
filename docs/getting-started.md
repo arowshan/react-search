@@ -8,7 +8,7 @@ Place **&lt;SearchMaster /&gt;** in your desired component \(for example App.js\
 
 | Prop | Type | Required/Optional |
 | :--- | :--- | :--- |
-| url [aaa](#test) | String | Required |
+| url | String | Required |
 | headers | Object | Optional |
 | params | Object | Optional |
 | queryKeyword | String | Required |
@@ -17,6 +17,7 @@ Place **&lt;SearchMaster /&gt;** in your desired component \(for example App.js\
 | searchFilters | Object \(Array of Objects\) | Optional |
 | resultComponent |  | Required |
 
+\[heads\]\(\#heads\)
 
 
 
@@ -42,14 +43,9 @@ Place **&lt;SearchMaster /&gt;** in your desired component \(for example App.js\
 
 
 
+## heads
 
 
 
 
-
-
-
-
-
-\[heading\]\(\#test\)
 

@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="example.html" />
+    <link rel="next" href="getting-started/url.md" />
     
     
     <link rel="prev" href="./" />
@@ -112,6 +112,25 @@
                 </a>
             
 
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="getting-started/url.md">
+            
+                <span>
+            
+                    
+                    url
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -174,7 +193,147 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="getting-started">Getting Started</h1>
-<p>Content of how to use</p>
+<pre><code>npm install --save react-search-and-filter
+</code></pre><p>Place <strong>&lt;SearchMaster /&gt;</strong> in your desired component (for example App.js) and start by giving it the required props.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Prop</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Required/Optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="#url">url</a></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">Required</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#headers">headers</a></td>
+<td style="text-align:left">Object</td>
+<td style="text-align:left">Optional</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#params">params</a></td>
+<td style="text-align:left">Object</td>
+<td style="text-align:left">Optional</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#querykeyword">queryKeyword</a></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">Required</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#searchresultspath">searchResultsPath</a></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">Required</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#sortcategories">sortCategories</a></td>
+<td style="text-align:left">Object</td>
+<td style="text-align:left">Optional</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#searchfilters">searchFilters</a></td>
+<td style="text-align:left">Object (Array of Objects)</td>
+<td style="text-align:left">Optional</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#resultcomponent">resultComponent</a></td>
+<td style="text-align:left">Object (React Component)</td>
+<td style="text-align:left">Required</td>
+</tr>
+</tbody>
+</table>
+<h4 id="url">url</h4>
+<p>The base URL to the api that performs the search.<br>Example:</p>
+<pre><code class="lang-js">url = <span class="hljs-string">&apos;https://data.usajobs.gov/api/Search&apos;</span>
+</code></pre>
+<h4 id="headers">headers</h4>
+<p>The headers to send with all ajax search requests.<br>Example:</p>
+<pre><code class="lang-js">headers = { <span class="hljs-string">&apos;Authorization-Key&apos;</span>: <span class="hljs-string">&apos;seCrEtDOfjd94fkdseCrEt/GXseCrEt=&apos;</span>}
+</code></pre>
+<h4 id="params">params</h4>
+<p>The parameters to send with all ajax search requests.</p>
+<p>Example:</p>
+<pre><code class="lang-js">params = { <span class="hljs-string">&apos;ResultsPerPage&apos;</span>: <span class="hljs-number">50</span> }
+</code></pre>
+<h4 id="querykeyword">queryKeyword</h4>
+<p>Each api may look for a different property in parameters to extract the search <a href="GLOSSARY.html#term" class="glossary-term" title="Definition for this term">term</a> to perform query</p>
+<p>Example:</p>
+<pre><code class="lang-js">queryKeyword=<span class="hljs-string">&apos;Keyword&apos;</span>
+</code></pre>
+<h4 id="searchresultspath">searchResultsPath</h4>
+<p>This is the path from the JSON response of the api to the array of results that you are interested in.</p>
+<p>Example:</p>
+<pre><code class="lang-js">searchResultsPath = <span class="hljs-string">&apos;data.SearchResult.SearchResultItems&apos;</span>
+</code></pre>
+<h4 id="sortcategories">sortCategories</h4>
+<p>Within the results array, there may be proprieties by which you would want to sort your results. sortCategories pairs what the users sees on the screen with the relative path to the result property that will used for sorting.</p>
+<p>Example:</p>
+<pre><code class="lang-js">sortCategories = {
+     <span class="hljs-string">&quot;Position&quot;</span>: <span class="hljs-string">&quot;MatchedObjectDescriptor.PositionTitle&quot;</span> ,
+     <span class="hljs-string">&quot;Location&quot;</span>: <span class="hljs-string">&quot;MatchedObjectDescriptor.PositionLocationDisplay&quot;</span>,
+};
+</code></pre>
+<h4 id="searchfilters">searchFilters</h4>
+<p>The the api you are searching against accepts search filters, you can provide an array of object with the format described below to pass on the keywords with a true or false flag with the ajax request.<br>The name property will be the name of the checkbox that the users sees and the keyword property is what the api would receive with the true or false flag.<br>Top level filters accept an array of children with the same format.</p>
+<p>Example:</p>
+<pre><code class="lang-jsx">searchFilters = [
+  {
+    <span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;USA Jobs&apos;</span>,
+    <span class="hljs-string">&apos;keyword&apos;</span>: <span class="hljs-string">&apos;&apos;</span>,
+    <span class="hljs-string">&apos;children&apos;</span>: [
+      {
+        <span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;Relocation&apos;</span>,
+        <span class="hljs-string">&apos;keyword&apos;</span>: <span class="hljs-string">&apos;RelocationIndicator&apos;</span>
+      },
+      {
+        <span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&quot;Most Recent&quot;</span>,
+        <span class="hljs-string">&apos;keyword&apos;</span> : <span class="hljs-string">&quot;ExcludeJOAOpenFor30Days&quot;</span>
+      },
+    ]
+  },
+  {
+    <span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;Full Time&apos;</span>,
+    <span class="hljs-string">&apos;keyword&apos;</span>: <span class="hljs-string">&apos;fullTime&apos;</span>,
+    <span class="hljs-string">&apos;children&apos;</span>: []
+  },
+  {
+    <span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;Part Time&apos;</span>,
+    <span class="hljs-string">&apos;keyword&apos;</span>: <span class="hljs-string">&apos;partTime&apos;</span>
+  }
+];
+</code></pre>
+<h4 id="resultcomponent">resultComponent</h4>
+<p>The module passes on the path that you provided to the results(searchResultsPath) to the resultComponent that you create. So you have access to all properties of the results object and can define how a single result should be displayed. The module will take care of the rest and maps your component to all other results.</p>
+<p>Example:<br><strong>App.js</strong></p>
+<pre><code>resultComponent={&lt;ResultCard /&gt;}
+</code></pre><p><strong>result-card.js</strong></p>
+<pre><code class="lang-jsx"><span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ResultCard</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+
+  render() {
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>
+          Job ID:
+          {this.props.result.MatchedObjectId}
+        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>
+          Title:
+          {this.props.result.MatchedObjectDescriptor.PositionTitle}
+        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span>
+    );
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> ResultCard;
+</code></pre>
 
                                 
                                 </section>
@@ -207,7 +366,7 @@
                 </a>
                 
                 
-                <a href="example.html" class="navigation navigation-next " aria-label="Next page: Example">
+                <a href="getting-started/url.md" class="navigation navigation-next " aria-label="Next page: url">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -218,7 +377,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Getting Started","level":"1.2","depth":1,"next":{"title":"Example","level":"1.3","depth":1,"path":"example.md","ref":"example.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"getting-started.md","mtime":"2017-11-06T13:56:46.475Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-11-06T14:19:02.447Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Getting Started","level":"1.2","depth":1,"next":{"title":"url","level":"1.2.1","depth":2,"path":"getting-started/url.md","ref":"getting-started/url.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"getting-started.md","mtime":"2017-11-13T15:28:28.377Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-11-13T16:08:12.384Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
@@ -226,10 +385,6 @@
         
     <script src="gitbook/gitbook.js"></script>
     <script src="gitbook/theme.js"></script>
-    
-        
-        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
-        
     
         
         <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>

@@ -4,8 +4,6 @@
 npm install --save react-search-and-filter
 ```
 
-\[head\]\(\#head\)
-
 Place **&lt;SearchMaster /&gt;** in your desired component \(for example App.js\) and start by giving it the required props.
 
 | Prop | Type | Required/Optional |
@@ -21,7 +19,7 @@ Place **&lt;SearchMaster /&gt;** in your desired component \(for example App.js\
 
 a
 
-a
+##### head
 
 a
 

@@ -100,14 +100,6 @@ searchFilters = [
         'name': "Most Recent",
         'keyword' : "ExcludeJOAOpenFor30Days"
       },
-      {
-        'name': "Internship",
-        'keyword' : "Internship"
-      },
-      {
-        'name': "Recent Grad",
-        'keyword' : "RecentGrad"
-      },
     ]
   },
   {

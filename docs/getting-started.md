@@ -86,7 +86,7 @@ Top level filters accept an array of children with the same format.
 
 Example:
 
-```js
+```jsx
 searchFilters = [
   {
     'name': 'USA Jobs',
@@ -128,7 +128,7 @@ The module passes on the path that you provided to the results\(searchResultsPat
 
 Example:
 
-```JSX
+```jsx
 resultComponent={<ResultCard />}
 ```
 
@@ -158,7 +158,7 @@ class ResultCard extends Component {
       </Card>
     );
   }
-  
+
 }
 
 export default ResultCard;

@@ -15,12 +15,12 @@ Place **&lt;SearchMaster /&gt;** in your desired component \(for example App.js\
 | [searchResultsPath](#searchresultspath) | String | Required |
 | [sortCategories](#sortcategories) | Object | Optional |
 | [searchFilters](#searchfilters) | Object \(Array of Objects\) | Optional |
-| [resultComponent](#resultcomponent) |  | Required |
+| [resultComponent](#resultcomponent) | Object \(React Component\) | Required |
 
 #### url
 
-The base URL to the api that performs the search.   
-Example:  
+The base URL to the api that performs the search.  
+Example:
 
 ```js
 url = 'https://data.usajobs.gov/api/Search'
@@ -33,7 +33,6 @@ Example:
 
 ```js
 headers = { 'Authorization-Key': 'seCrEtDOfjd94fkdseCrEt/GXseCrEt='}
-
 ```
 
 #### params
@@ -58,7 +57,7 @@ queryKeyword='Keyword'
 
 #### searchResultsPath
 
-This is the path from the JSON response of the api to the array of results that you are interested in. 
+This is the path from the JSON response of the api to the array of results that you are interested in.
 
 Example:
 
@@ -81,7 +80,7 @@ sortCategories = {
 
 #### searchFilters
 
-The the api you are searching against accepts search filters, you can provide an array of object with the format described below to pass on the keywords with a true or false flag with the ajax request.   
+The the api you are searching against accepts search filters, you can provide an array of object with the format described below to pass on the keywords with a true or false flag with the ajax request.  
 The name property will be the name of the checkbox that the users sees and the keyword property is what the api would receive with the true or false flag.  
 Top level filters accept an array of children with the same format.
 
@@ -123,9 +122,47 @@ searchFilters = [
 ];
 ```
 
-
-
 #### resultComponent
 
-The module passes on the path that you provided to the results\(searchResultsPath\) to the resultComponent that you create. So you have access to all properties of the results object and can define how a single result should be displayed. The module will take care of the rest and maps your component to all other results. 
+The module passes on the path that you provided to the results\(searchResultsPath\) to the resultComponent that you create. So you have access to all properties of the results object and can define how a single result should be displayed. The module will take care of the rest and maps your component to all other results.
+
+Example:
+
+```JSX
+resultComponent={<ResultCard />}
+```
+
+```jsx
+import React, { Component } from 'react';
+import {Card, CardTitle, CardText} from 'material-ui/Card';
+
+import './result-card.css';
+
+class ResultCard extends Component {
+
+  render() {
+    return (
+      <Card>
+        <CardTitle title={this.props.result.MatchedObjectDescriptor.PositionTitle} 
+        subtitle={this.props.result.MatchedObjectDescriptor.PositionSchedule[0].Name} />
+          <CardText>
+            <ul>
+              <li><span className="list__title">Job ID: </span>{this.props.result.MatchedObjectId}</li>
+              <li><span className="list__title">Organization: </span>{this.props.result.MatchedObjectDescriptor.OrganizationName}</li> 
+              <li><span className="list__title">Department: </span>{this.props.result.MatchedObjectDescriptor.DepartmentName}</li>
+              <li><span className="list__title">Location: </span>{this.props.result.MatchedObjectDescriptor.PositionLocationDisplay}</li>
+              <hr/>
+              <li><span className="list__title">Qualification Summary: </span>{this.props.result.MatchedObjectDescriptor.QualificationSummary}</li>
+            </ul>
+          </CardText>
+      </Card>
+    );
+  }
+  
+}
+
+export default ResultCard;
+```
+
+
 

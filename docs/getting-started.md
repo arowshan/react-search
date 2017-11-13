@@ -19,9 +19,7 @@ Place **&lt;SearchMaster /&gt;** in your desired component \(for example App.js\
 
 \[heads\]\(\#head\)
 
-
-
-## head {#head}
+## head
 
 
 

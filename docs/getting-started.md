@@ -130,9 +130,7 @@ resultComponent={<ResultCard />}
 ```jsx
 import React, { Component } from 'react';
 
-
 class ResultCard extends Component {
-
   render() {
     return (
       <ul>

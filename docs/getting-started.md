@@ -17,35 +17,11 @@ Place **&lt;SearchMaster /&gt;** in your desired component \(for example App.js\
 | searchFilters | Object \(Array of Objects\) | Optional |
 | resultComponent |  | Required |
 
-\[heads\]\(\#heads\)
+\[heads\]\(\#head\)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## heads
-
-
+## head {#head}
 
 
 

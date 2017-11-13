@@ -195,14 +195,14 @@ class SearchMaster extends Component {
   }
 
   renderFilterOptions() {
-    // if(this.state.searchResults.length>0) {
+    if(this.state.searchResults.length>0) {
       return (
         <SearchFilters 
           searchFilters={this.state.searchFilters}
           updateAppliedFilters={this.updateAppliedFilters}
         />
       )
-    // }
+    }
   }
 
   renderFilterButtons() {

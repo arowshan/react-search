@@ -4,6 +4,9 @@ TODO:
     ☐ Filters slide animation
     ☐ remove axios
 
+    ☐ make headers and params optinoal
+    
+
 Read about:
     ✔ SMACSS / BEM @high @done (10/30/2017, 9:58:18 AM)
     ✔ default props @done (10/23/2017, 8:51:05 AM)

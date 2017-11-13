@@ -11,9 +11,7 @@ class App extends Component {
 
   url = 'https://data.usajobs.gov/api/Search';
   headers = { 'Authorization-Key': 'oa5FLRYDO+LFrLejBF3hqr0/AYlgQ1JZoA/GXch/47s='};
-  params = {
-    'ResultsPerPage': 50
-  };
+  params = { 'ResultsPerPage': 50 };
 
   render() {
     return (

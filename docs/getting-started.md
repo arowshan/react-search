@@ -8,7 +8,7 @@ Place **&lt;SearchMaster /&gt;** in your desired component \(for example App.js\
 
 | Prop | Type | Required/Optional |
 | :--- | :--- | :--- |
-| url \[link-text\]\(\#&lt;heading-name&gt;\) | String | Required |
+| url [aaa](#test) | String | Required |
 | headers | Object | Optional |
 | params | Object | Optional |
 | queryKeyword | String | Required |
@@ -45,11 +45,11 @@ Place **&lt;SearchMaster /&gt;** in your desired component \(for example App.js\
 
 
 
+
+
+
+
+
+
 \[heading\]\(\#test\)
-
-
-
-
-
-
 

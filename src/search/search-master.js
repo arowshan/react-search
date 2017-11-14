@@ -253,7 +253,11 @@ SearchMaster.defaultProps = {
   resultsPage: 1,
   resultsPerPage: 5,
   startingResult: 0,
-  sortedResults: []
+  sortedResults: [],
+  headers: {},
+  params: {},
+  searchFilters: [],
+  sortCategories: {},
 }
 
 

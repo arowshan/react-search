@@ -41,6 +41,7 @@ class SearchSort extends Component {
                         <MenuItem value={1} primaryText="1" />
                         <MenuItem value={5} primaryText="5" />
                         <MenuItem value={25} primaryText="25" />
+                        <MenuItem value={50} primaryText="50" />
                     </SelectField>
                 </div>
                 <div className="sort-feature">

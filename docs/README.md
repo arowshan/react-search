@@ -10,5 +10,7 @@ Here is an overview of what this module provides and what you add to utilize it.
 
 
 
+![](/public/favicon.ico)
 
+![](/assets/search-master.jpg)
 

@@ -8,5 +8,5 @@ Here is an overview of what this module provides and what you add to utilize it.
 | :--- |
 
 
-![](/docs/images/search-master.jpg)
+!\[test\]\(images/search-master.jpg\)
 

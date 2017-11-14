@@ -12,5 +12,9 @@ Here is an overview of what this module provides and what you add to utilize it.
 
 ![](/docs/search-master.jpg)
 
-![](/assets/search-master.jpg)\[Image5\]\(./search-master.jpg\)
+![](/assets/search-master.jpg)\[Image5\]\(./images/search-master.jpg\)
+
+
+
+![](/docs/images/search-master.jpg)
 

@@ -10,5 +10,5 @@ Here is an overview of what this module provides and what you add to utilize it.
 
 ![](/docs/images/search-master.jpg)
 
-![](/_book/gitbook/images/favicon.ico)
+![](/_book/gitbook/images/favicon.ico)![](/_book/gitbook/images/favicon1.ico)
 

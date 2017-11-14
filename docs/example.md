@@ -1,5 +1,7 @@
 # Example
 
+**App.js**
+
 ```JSX
 import React, { Component } from 'react';
 import './App.css';

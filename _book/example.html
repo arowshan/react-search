@@ -58,7 +58,7 @@
 
     
     
-    <link rel="prev" href="getting-started/url.md" />
+    <link rel="prev" href="getting-started.html" />
     
 
     </head>
@@ -110,25 +110,6 @@
                 </a>
             
 
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.2.1" data-path="getting-started/url.md">
-            
-                <span>
-            
-                    
-                    url
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
             
         </li>
     
@@ -191,26 +172,33 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="example">Example</h1>
-<pre><code class="lang-js"><span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
+<pre><code class="lang-JSX"><span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
 <span class="hljs-keyword">import</span> <span class="hljs-string">&apos;./App.css&apos;</span>;
 
-<span class="hljs-keyword">import</span> SearchMaster <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./search/search-master&apos;</span>;
-<span class="hljs-keyword">import</span> ResultCard <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./data/result-card&apos;</span>
+<span class="hljs-keyword">import</span> SearchMaster <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-search-and-filter&apos;</span>;
 
+<span class="hljs-keyword">import</span> ResultCard <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./data/result-card&apos;</span>
 <span class="hljs-keyword">import</span> FILTERS <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./data/filters&apos;</span>;
 <span class="hljs-keyword">import</span> SORTS <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./data/sorts&apos;</span>;
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+
+  url = <span class="hljs-string">&apos;https://data.usajobs.gov/api/Search&apos;</span>;
+  headers = { <span class="hljs-string">&apos;Authorization-Key&apos;</span>: <span class="hljs-string">&apos;oa5FLRYDO+LFrLejBF3hqr0/AYlgQ1JZoA/GXch/47s=&apos;</span>};
+  params = { <span class="hljs-string">&apos;ResultsPerPage&apos;</span>: <span class="hljs-number">50</span> };
 
   render() {
     <span class="hljs-keyword">return</span> (
       &lt;div className=&quot;App&quot;&gt;
         &lt;SearchMaster 
           resultComponent={&lt;ResultCard /&gt;}
-          searchFilters={[FILTERS]}
+          searchFilters={FILTERS}
           sortCategories={SORTS}
+          queryKeyword=&apos;Keyword&apos;
           searchResultsPath={&apos;data.SearchResult.SearchResultItems&apos;}
-          url={&apos;https://data.usajobs.gov/api/Search&apos;}
+          url={this.url}
+          headers={this.headers}
+          params={this.params}
         /&gt;
       &lt;/div&gt;
     );
@@ -219,6 +207,51 @@
 }
 
 export default App;
+</code></pre>
+<p><strong>sorts.js</strong></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> SORTS = {
+     <span class="hljs-string">&quot;Position&quot;</span>: <span class="hljs-string">&quot;MatchedObjectDescriptor.PositionTitle&quot;</span> ,
+     <span class="hljs-string">&quot;Location&quot;</span>: <span class="hljs-string">&quot;MatchedObjectDescriptor.PositionLocationDisplay&quot;</span>,
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> SORTS;
+</code></pre>
+<p><strong>filters.js</strong></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> FILTERS = [
+  {
+    <span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;USA Jobs&apos;</span>,
+    <span class="hljs-string">&apos;keyword&apos;</span>: <span class="hljs-string">&apos;&apos;</span>,
+    <span class="hljs-string">&apos;children&apos;</span>: [
+      {
+        <span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;Relocation&apos;</span>,
+        <span class="hljs-string">&apos;keyword&apos;</span>: <span class="hljs-string">&apos;RelocationIndicator&apos;</span>
+      },
+      {
+        <span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&quot;Most Recent&quot;</span>,
+        <span class="hljs-string">&apos;keyword&apos;</span> : <span class="hljs-string">&quot;ExcludeJOAOpenFor30Days&quot;</span>
+      },
+      {
+        <span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&quot;Internship&quot;</span>,
+        <span class="hljs-string">&apos;keyword&apos;</span> : <span class="hljs-string">&quot;Internship&quot;</span>
+      },
+      {
+        <span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&quot;Recent Grad&quot;</span>,
+        <span class="hljs-string">&apos;keyword&apos;</span> : <span class="hljs-string">&quot;RecentGrad&quot;</span>
+      },
+    ]
+  },
+  {
+    <span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;Full Time&apos;</span>,
+    <span class="hljs-string">&apos;keyword&apos;</span>: <span class="hljs-string">&apos;fullTime&apos;</span>,
+    <span class="hljs-string">&apos;children&apos;</span>: []
+  },
+  {
+    <span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;Part Time&apos;</span>,
+    <span class="hljs-string">&apos;keyword&apos;</span>: <span class="hljs-string">&apos;partTime&apos;</span>
+  }
+];
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> FILTERS;
 </code></pre>
 
                                 
@@ -247,7 +280,7 @@ export default App;
 
             
                 
-                <a href="getting-started/url.md" class="navigation navigation-prev navigation-unique" aria-label="Previous page: url">
+                <a href="getting-started.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Getting Started">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -259,7 +292,7 @@ export default App;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Example","level":"1.3","depth":1,"previous":{"title":"url","level":"1.2.1","depth":2,"path":"getting-started/url.md","ref":"getting-started/url.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"example.md","mtime":"2017-11-07T11:40:19.204Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-11-13T16:08:12.384Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Example","level":"1.3","depth":1,"previous":{"title":"Getting Started","level":"1.2","depth":1,"path":"getting-started.md","ref":"getting-started.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"example.md","mtime":"2017-11-13T17:59:05.151Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-11-14T11:44:30.791Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

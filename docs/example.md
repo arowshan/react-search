@@ -143,11 +143,9 @@ export default ResultCard;
 ### Results path and Sorts
 
 Consider the following json response from a search api.  
-![](/assets/json-response.png)
+![](https://raw.githubusercontent.com/arowshan/react-search/master/assets/json-response.png)
 
 In order to get to the results array that we are interested in we go from the top level data object down to SearchResult and then down to SearchResultItems, therefore, the appropriate path would be "**data.SearchResult.SearchResultItems"**.
 
 This path will be used as the base for sort fields, therefore, if we want to address the **PositionTitle **property as one of the sort options we would simply start from a result member of the array and the path would be **"MatchedObjectDescriptor.PositionTitle"**.
-
-
 

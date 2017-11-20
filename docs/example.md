@@ -1,11 +1,12 @@
 # Example
 
+In this example, we start from the final result of how you would place the SearchMaster component in your app and then show an example of each prop.
+
 **App.js**
 
-```JSX
+```js
 import React, { Component } from 'react';
 import './App.css';
-
 import SearchMaster from 'react-search-and-filter';
 
 import ResultCard from './data/result-card'
@@ -133,12 +134,20 @@ class ResultCard extends Component {
       </Card>
     );
   }
-  
+
 }
 
 export default ResultCard;
-
 ```
+
+### Results path and Sorts
+
+Consider the following json response from a search api.  
+![](/assets/json-response.png)
+
+In order to get to the results array that we are interested in we go from the top level data object down to SearchResult and then down to SearchResultItems, therefore, the appropriate path would be "**data.SearchResult.SearchResultItems"**.
+
+This path will be used as the base for sort fields, therefore, if we want to address the **PositionTitle **property as one of the sort options we would simply start from a result member of the array and the path would be **"MatchedObjectDescriptor.PositionTitle"**.
 
 
 

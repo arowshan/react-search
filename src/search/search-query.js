@@ -51,6 +51,10 @@ class SearchQuery extends Component {
     }
   }
 
+  testFunc() {
+    return 54
+  }
+
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="query-container">

@@ -4,6 +4,8 @@ import { shallow } from 'enzyme';
 import SearchQuery from './search-query';
 import renderer from 'react-test-renderer';
 
+import {testFunc} from './search-query';
+
 
 describe('Components rendered', () => {
   let wrapper;
@@ -28,5 +30,17 @@ describe('Components rendered', () => {
   // test("should render input", () => {
   //   expect(wrapper.find("input")).toMatchSnapshot();
   // });
+
+  test("testing mock func", () => {
+    const mockTestFunc = jest.fn();
+    mockTestFunc();
+    expect(mockTestFunc.mock.calls.length).toBe(1);
+  });
+
+  test("testing func func", () => {
+    expect(wrapper.instance().testFunc()).toBe(54);
+  });
+  
+
   
 });

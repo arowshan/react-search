@@ -24,11 +24,28 @@ const FILTERS = [
   {
     'name': 'Full Time',
     'keyword': 'fullTime',
-    'children': []
+    'children': [
+      {
+        'name': 'Relocation1',
+        'keyword': 'RelocationIndicator1'
+      },
+      {
+        'name': "Most Recent1",
+        'keyword' : "ExcludeJOAOpenFor30Days1"
+      },
+      {
+        'name': "Internship1",
+        'keyword' : "Internship1"
+      },
+      {
+        'name': "Recent Grad1",
+        'keyword' : "RecentGrad1"
+      },
+    ]
   },
   {
-    'name': 'Part Time',
-    'keyword': 'partTime'
+    'name': 'Part Time1',
+    'keyword': 'partTime1'
   }
 ];
 

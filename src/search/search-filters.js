@@ -5,6 +5,13 @@ import './search-filter.css';
 
 class SearchFilters extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+      hideChildren: {}
+    }
+  }
+
   checkChildren(event, filter) {
     if(filter.children){
       for (let child of filter.children) {
@@ -12,6 +19,16 @@ class SearchFilters extends Component {
       }
     }
     this.updateAppliedFilters();
+  }
+
+  toggleDropDown(filterObj) {
+    let hideChildren = Object.assign({}, this.state.hideChildren);
+    hideChildren[filterObj.name] === true ?
+    hideChildren[filterObj.name] = false:
+    hideChildren[filterObj.name] = true;
+    this.setState({
+      hideChildren
+    });
   }
 
   updateAppliedFilters() {
@@ -33,8 +50,17 @@ class SearchFilters extends Component {
                 ref={filterObj.keyword}
                 value={filterObj.keyword}
                 onClick={(event) => this.checkChildren(event, filterObj)}
-              />{filterObj.name}
-              <ul>
+              />
+              <span
+              onClick={() => this.toggleDropDown(filterObj)}
+              className="parent-filter">
+              {filterObj.name}
+              <span className="expand-collapse-icons">
+              <span hidden={!this.state.hideChildren[filterObj.name]}>&#x25B8;</span>
+              <span hidden={this.state.hideChildren[filterObj.name]}>&#x25BE;</span>
+              </span>
+              </span>
+              <ul hidden={this.state.hideChildren[filterObj.name]}>
                 {this.listFilters(filterObj.children)}
               </ul>
             </li>
@@ -42,7 +68,7 @@ class SearchFilters extends Component {
       }
       else {
         return (
-          <li key={filterObj.keyword} class="checkbox">
+          <li key={filterObj.keyword} className="checkbox">
             <input type="checkbox"
               ref={filterObj.keyword}
               value={filterObj.keyword}

@@ -42,7 +42,7 @@ class SearchFilters extends Component {
       }
       else {
         return (
-          <li key={filterObj.keyword}>
+          <li key={filterObj.keyword} class="checkbox">
             <input type="checkbox"
               ref={filterObj.keyword}
               value={filterObj.keyword}
@@ -56,7 +56,7 @@ class SearchFilters extends Component {
 
   render() {
     return (
-      <div className="filter-container">
+      <div className="filter-container ex-filter-container">
         {this.listFilters(this.props.searchFilters)}
       </div>
     );

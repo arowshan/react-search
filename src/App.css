@@ -1,0 +1,5 @@
+/* additional class for filters */
+.ex-filter-container {
+    box-shadow: lightgray 1px 1px 1px 1px;
+    padding: 10px;
+}

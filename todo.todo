@@ -3,9 +3,9 @@ TODO:
     ☐ responsiveness stacked vs L
     ☐ Filters slide animation
     ☐ remove axios
+    ✔ make headers and params optional @done (11/14/2017, 10:22:38 AM)
+    ☐ add class props
 
-    ☐ make headers and params optional
-    ☐ provide link to online editor on example page of documentation
     
 
 Read about:
@@ -29,17 +29,21 @@ Questions for Mark:
     ✔ invite for github? @done (10/31/2017, 10:39:38 AM)
     
 
-Serch UI:
+UI:
     ☐ decrease width of search button @low
-    ☐ center search and only transition to left @low
     ✔ materialize sort ui @done (10/30/2017, 8:09:46 AM)
     ✔ card results @done (10/30/2017, 8:09:44 AM)
     ☐ add spinner till results arrive @low
     ✔ resolve select alignment with other text on sort @low @done (11/9/2017, 1:37:39 PM)
     ☐ add animation to sort and results @low
     ☐ add no result found case @low 
-    ☐ make height of cards uniform @low 
-    ☐ add clear and apply to filters @today 
+    ☐ add clear all to filters
+    ☐ move up sorts and only show when results
+
+
+Documentation:
+    ☐ add example api and go thorugh how results path and sorts are formed
+    ☐ provide link to online editor on example page of documentation (stackblitz?)
 
 
 Sort:

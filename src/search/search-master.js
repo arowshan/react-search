@@ -20,7 +20,7 @@ class SearchMaster extends Component {
       searchQuery: '',
       searchFilters: this.props.searchFilters,
       sortCategories: this.props.sortCategories,
-      appliedFilters: [],
+      appliedFilters: {},
       //TODO dynamically get this
       resultsPage: 1,
       resultsPerPage: 5,
@@ -47,8 +47,8 @@ class SearchMaster extends Component {
     let params = this.props.params;
     Object.assign(params, {[this.props.queryKeyword]: this.state.searchQuery});
 
-    for(let item of this.state.appliedFilters) {
-     params[Object.keys(item)[0]] = item[Object.keys(item)[0]];
+    for(let item of Object.keys(this.state.appliedFilters)) {
+      params[item] = this.state.appliedFilters[item];
     }
 
     this.setState({

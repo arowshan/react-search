@@ -12,26 +12,32 @@ const defaultStyle = {
 
 const transitionStyles = {
   entering: { maxHeight: '0px' },
+  // get max height dynamically
   entered: { maxHeight: '400px' }
 };
 
 class SearchFilters extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+      checked: {},
       hideChildren: {}
     }
   }
 
-  checkChildren(event, filter) {
-    if(filter.children) {
-      for (let child of filter.children) {
-        console.log(this.refs[filter.keyword]);
-        // this.refs[child.keyword].checked = event.target.checked;
+  checkChildren(filterObj) {
+    let checked = Object.assign({}, this.state.checked);
+    checked[filterObj.keyword] = !checked[filterObj.keyword];
+    if(filterObj.children) {
+      for (let child of filterObj.children) {
+        checked[child.keyword] = checked[filterObj.keyword];
       }
     }
-    this.updateAppliedFilters();
+    this.setState({
+      checked
+    });
+    this.props.updateAppliedFilters(checked);
   }
 
   toggleDropDown(filterObj) {
@@ -44,16 +50,6 @@ class SearchFilters extends Component {
     });
   }
 
-  updateAppliedFilters() {
-    let appliedFilters = [];
-    for( let item of Object.keys(this.refs) ) {
-      if(this.refs[item].type==='checkbox') {
-        appliedFilters.push({ [this.refs[item].value]: this.refs[item].checked })
-      }
-    }
-    this.props.updateAppliedFilters(appliedFilters);
-  }
-
   listFilters(filters) {
     return filters.map( (filterObj) => {
       if(filterObj.children && filterObj.children.length>0) {
@@ -62,11 +58,11 @@ class SearchFilters extends Component {
               <input type="checkbox"
                 ref={filterObj.keyword}
                 value={filterObj.keyword}
-                onClick={(event) => this.checkChildren(event, filterObj)}
+                onClick={() => this.checkChildren(filterObj)}
+                checked={this.state.checked[filterObj.keyword]}
               />
               <span
               onClick={() => this.toggleDropDown(filterObj)}
-              // onClick={() => this.handleToggle()}
               className="parent-filter">
                 {filterObj.name}
                 <span className="expand-collapse-icons">
@@ -94,6 +90,8 @@ class SearchFilters extends Component {
             <input type="checkbox"
               ref={filterObj.keyword}
               value={filterObj.keyword}
+              checked={this.state.checked[filterObj.keyword]}
+              onClick={() => this.checkChildren(filterObj)}
             />{filterObj.name}
           </li>
         );

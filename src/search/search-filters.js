@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
+import { Transition  } from 'react-transition-group'
 
 import './search-filter.css';
 
+const duration = 250;
+const defaultStyle = {
+  transition: `all ${duration}ms ease-in-out`,
+  overflow: 'hidden',
+  maxHeight: '0px'
+}
+
+const transitionStyles = {
+  entering: { maxHeight: '0px' },
+  entered: { maxHeight: '400px' }
+};
 
 class SearchFilters extends Component {
 
@@ -13,9 +25,10 @@ class SearchFilters extends Component {
   }
 
   checkChildren(event, filter) {
-    if(filter.children){
+    if(filter.children) {
       for (let child of filter.children) {
-        this.refs[child.keyword].checked = event.target.checked;
+        console.log(this.refs[filter.keyword]);
+        // this.refs[child.keyword].checked = event.target.checked;
       }
     }
     this.updateAppliedFilters();
@@ -53,16 +66,25 @@ class SearchFilters extends Component {
               />
               <span
               onClick={() => this.toggleDropDown(filterObj)}
+              // onClick={() => this.handleToggle()}
               className="parent-filter">
-              {filterObj.name}
-              <span className="expand-collapse-icons">
-              <span hidden={!this.state.hideChildren[filterObj.name]}>&#x25B8;</span>
-              <span hidden={this.state.hideChildren[filterObj.name]}>&#x25BE;</span>
+                {filterObj.name}
+                <span className="expand-collapse-icons">
+                  <span hidden={!this.state.hideChildren[filterObj.name]}>&#x25B8;</span>
+                  <span hidden={this.state.hideChildren[filterObj.name]}>&#x25BE;</span>
+                </span>
               </span>
-              </span>
-              <ul hidden={this.state.hideChildren[filterObj.name]}>
-                {this.listFilters(filterObj.children)}
-              </ul>
+              <Transition in={!this.state.hideChildren[filterObj.name]} timeout={duration}>
+                {(state) => (
+                  <ul className="children-filters"
+                  style={{
+                    ...defaultStyle,
+                    ...transitionStyles[state]
+                  }}>
+                    {this.listFilters(filterObj.children)}
+                  </ul>
+                )}
+              </Transition>
             </li>
         );
       }
@@ -72,7 +94,6 @@ class SearchFilters extends Component {
             <input type="checkbox"
               ref={filterObj.keyword}
               value={filterObj.keyword}
-              onClick={(event) => this.checkChildren(event, filterObj)}
             />{filterObj.name}
           </li>
         );

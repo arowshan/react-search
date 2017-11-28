@@ -1,8 +1,7 @@
 TODO:
     ☐ remove all material ui compoenents from module
     ☐ responsiveness stacked vs L
-    ☐ Filters slide animation
-    ☐ remove axios
+    ✔ Filters slide animation @done (11/28/2017, 7:03:23 AM)
     ✔ make headers and params optional @done (11/14/2017, 10:22:38 AM)
     ☐ add class props
 

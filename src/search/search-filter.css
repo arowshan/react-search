@@ -10,17 +10,21 @@ ul {
 li {
     list-style-type: none;
 }
-
 .checkbox {
     white-space: nowrap;
-}
-
-.expand-collapse-icons { 
-    font-size: 20px;
-    vertical-align: bottom;
-}
-
-.parent-filter {
     cursor: pointer;
+}
+.expand-collapse-icons { 
+    transform: scale(1.5,1.5);
+    display: block;
+    float: right;
+}
+.parent-filter {
     font-weight: bold;
+}
+.filter {
+    cursor: pointer;
+}
+.filter:hover {
+    color: #2196F3;
 }

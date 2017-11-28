@@ -4,16 +4,27 @@ import { Transition  } from 'react-transition-group'
 import './search-filter.css';
 
 const duration = 250;
-const defaultStyle = {
+const dropdownIconDuration = 200;
+
+const defaultFilterStyle = {
   transition: `all ${duration}ms ease-in-out`,
   overflow: 'hidden',
   maxHeight: '0px'
 }
 
-const transitionStyles = {
+const filterTransitionStyles = {
   entering: { maxHeight: '0px' },
   // get max height dynamically
   entered: { maxHeight: '400px' }
+};
+
+const defaultDropdownIconStyle = {
+  transition: `all ${dropdownIconDuration}ms ease-out`,
+}
+
+const dropdownIconTransitionStyles = {
+  entering: { transform: `rotate(0deg)` },
+  entered: { transform: `rotate(90deg)` }
 };
 
 class SearchFilters extends Component {
@@ -26,7 +37,8 @@ class SearchFilters extends Component {
     }
   }
 
-  checkChildren(filterObj) {
+  checkChildren(e, filterObj) {
+    e.stopPropagation();
     let checked = Object.assign({}, this.state.checked);
     checked[filterObj.keyword] = !checked[filterObj.keyword];
     if(filterObj.children) {
@@ -40,11 +52,9 @@ class SearchFilters extends Component {
     this.props.updateAppliedFilters(checked);
   }
 
-  toggleDropDown(filterObj) {
+  toggleDropDown(filterObj) { 
     let hideChildren = Object.assign({}, this.state.hideChildren);
-    hideChildren[filterObj.name] === true ?
-    hideChildren[filterObj.name] = false:
-    hideChildren[filterObj.name] = true;
+    hideChildren[filterObj.name] = !hideChildren[filterObj.name]
     this.setState({
       hideChildren
     });
@@ -54,28 +64,33 @@ class SearchFilters extends Component {
     return filters.map( (filterObj) => {
       if(filterObj.children && filterObj.children.length>0) {
         return (
-            <li key={filterObj.keyword}>
+            <li key={filterObj.keyword} className="checkbox" onClick={() => this.toggleDropDown(filterObj)}>
               <input type="checkbox"
                 ref={filterObj.keyword}
                 value={filterObj.keyword}
-                onClick={() => this.checkChildren(filterObj)}
+                onClick={(e) => this.checkChildren(e, filterObj)}
                 checked={this.state.checked[filterObj.keyword]}
               />
-              <span
-              onClick={() => this.toggleDropDown(filterObj)}
-              className="parent-filter">
-                {filterObj.name}
-                <span className="expand-collapse-icons">
-                  <span hidden={!this.state.hideChildren[filterObj.name]}>&#x25B8;</span>
-                  <span hidden={this.state.hideChildren[filterObj.name]}>&#x25BE;</span>
-                </span>
+              <span>
+                <span className="filter parent-filter" onClick={(e) => this.checkChildren(e, filterObj)}>{filterObj.name}</span>
+                <Transition in={!this.state.hideChildren[filterObj.name]} timeout={duration}>
+                  {(state) => (
+                    <span className="expand-collapse-icons" style={{
+                      ...defaultDropdownIconStyle,
+                      ...dropdownIconTransitionStyles[state]
+                    }}
+                    >
+                      <span className="dropdown-icon">&#x25B8;</span>
+                    </span>
+                  )}
+                </Transition>
               </span>
               <Transition in={!this.state.hideChildren[filterObj.name]} timeout={duration}>
                 {(state) => (
                   <ul className="children-filters"
                   style={{
-                    ...defaultStyle,
-                    ...transitionStyles[state]
+                    ...defaultFilterStyle,
+                    ...filterTransitionStyles[state]
                   }}>
                     {this.listFilters(filterObj.children)}
                   </ul>
@@ -86,13 +101,14 @@ class SearchFilters extends Component {
       }
       else {
         return (
-          <li key={filterObj.keyword} className="checkbox">
+          <li key={filterObj.keyword} className="checkbox" 
+          onClick={(e) => this.checkChildren(e, filterObj)}>
             <input type="checkbox"
               ref={filterObj.keyword}
               value={filterObj.keyword}
-              checked={this.state.checked[filterObj.keyword]}
-              onClick={() => this.checkChildren(filterObj)}
-            />{filterObj.name}
+              checked={this.state.checked[filterObj.keyword]}       
+            />
+            <span className="filter child-filter">{filterObj.name}</span>
           </li>
         );
       }

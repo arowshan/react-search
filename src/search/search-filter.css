@@ -15,7 +15,6 @@ li {
     cursor: pointer;
 }
 .expand-collapse-icons { 
-    transform: scale(1.5,1.5);
     display: block;
     float: right;
 }

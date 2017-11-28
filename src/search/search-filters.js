@@ -23,8 +23,10 @@ const defaultDropdownIconStyle = {
 }
 
 const dropdownIconTransitionStyles = {
-  entering: { transform: `rotate(0deg)` },
-  entered: { transform: `rotate(90deg)` }
+  entering: { transform: `rotate(0deg) scale(1.3,1.3)` },
+  entered: { transform: `rotate(90deg) scale(1.3,1.3)` },
+  exiting: { transform: `scale(1.6,1.6)` },
+  exited: { transform: `scale(1.6,1.6)` }
 };
 
 class SearchFilters extends Component {
@@ -36,6 +38,17 @@ class SearchFilters extends Component {
       hideChildren: {}
     }
   }
+
+  // componentWillMount() {
+  //   let checked = {};
+  //   for(let filter of this.props.searchFilters) {
+  //     console.log(filter);
+  //     checked = Object.assign(checked, {[filter.keyword]: true})
+  //   }
+  //   this.setState({
+  //     checked
+  //   });
+  // }
 
   checkChildren(e, filterObj) {
     e.stopPropagation();
@@ -52,7 +65,7 @@ class SearchFilters extends Component {
     this.props.updateAppliedFilters(checked);
   }
 
-  toggleDropDown(filterObj) { 
+  toggleDropDown(filterObj) {
     let hideChildren = Object.assign({}, this.state.hideChildren);
     hideChildren[filterObj.name] = !hideChildren[filterObj.name]
     this.setState({
@@ -66,10 +79,9 @@ class SearchFilters extends Component {
         return (
             <li key={filterObj.keyword} className="checkbox" onClick={() => this.toggleDropDown(filterObj)}>
               <input type="checkbox"
-                ref={filterObj.keyword}
                 value={filterObj.keyword}
                 onClick={(e) => this.checkChildren(e, filterObj)}
-                checked={this.state.checked[filterObj.keyword]}
+                checked={!!this.state.checked[filterObj.keyword]}
               />
               <span>
                 <span className="filter parent-filter" onClick={(e) => this.checkChildren(e, filterObj)}>{filterObj.name}</span>
@@ -104,9 +116,8 @@ class SearchFilters extends Component {
           <li key={filterObj.keyword} className="checkbox" 
           onClick={(e) => this.checkChildren(e, filterObj)}>
             <input type="checkbox"
-              ref={filterObj.keyword}
               value={filterObj.keyword}
-              checked={this.state.checked[filterObj.keyword]}       
+              checked={!!this.state.checked[filterObj.keyword]}       
             />
             <span className="filter child-filter">{filterObj.name}</span>
           </li>
@@ -122,7 +133,6 @@ class SearchFilters extends Component {
       </div>
     );
   }
-
 }
 
 export default SearchFilters;
